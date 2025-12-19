@@ -1,0 +1,90 @@
+===============================================
+  INSTALLATION NEO4J + KNOWLEDGE GRAPH
+===============================================
+
+CONTENU DU PACKAGE :
+  - NMAP_AI_NEO4J_DATA.zip  (Base de données)
+  - docker-compose.yml       (Configuration)
+  - import_data.bat          (Script d'import)
+  - test_kg.py               (Test)
+  - INSTALLATION.txt         (Ce fichier)
+
+===============================================
+  PRÉREQUIS
+===============================================
+
+1. Docker Desktop installé et LANCÉ
+   https://www.docker.com/products/docker-desktop
+
+2. Python 3.8+ avec package neo4j :
+   pip install neo4j
+
+===============================================
+  INSTALLATION (2 MÉTHODES)
+===============================================
+
+MÉTHODE 1 - AUTOMATIQUE (RECOMMANDÉ) :
+  1. Double-clic sur : import_data.bat
+  2. Attendre 2-3 minutes
+  3. Tester : python test_kg.py
+
+MÉTHODE 2 - MANUELLE :
+  1. Dézipper NMAP_AI_NEO4J_DATA.zip
+  2. docker-compose up -d
+  3. Attendre 30 secondes
+  4. docker-compose stop
+  5. docker cp neo4j_data/. nmap-ai-neo4j:/data/
+  6. docker-compose up -d
+  7. Attendre 20 secondes
+  8. python test_kg.py
+
+===============================================
+  VÉRIFICATION
+===============================================
+
+Interface Web : http://localhost:7474
+Username      : neo4j
+Password      : nmap_ai_2024
+
+Test Python   : python test_kg.py
+
+Résultat attendu :
+  ✅ Nœuds     : 10575
+  ✅ Relations : 35677
+
+===============================================
+  CONNEXION DANS VOTRE CODE
+===============================================
+
+from neo4j import GraphDatabase
+
+driver = GraphDatabase.driver(
+    "bolt://localhost:7687",
+    auth=("neo4j", "nmap_ai_2024")
+)
+
+with driver.session() as session:
+    result = session.run("""
+        MATCH (p:Port)
+        RETURN p.service, p.number
+        LIMIT 5
+    """)
+    
+    for record in result:
+        print(record["p.service"], record["p.number"])
+
+driver.close()
+
+===============================================
+```
+
+---
+
+## ✅ RÉSUMÉ : CRÉE CES 4 FICHIERS
+```
+C:\Users\Admin\OneDrive\Desktop\Nmap_AI\
+├── NMAP_AI_NEO4J_DATA.zip      ← Déjà créé ✅
+├── docker-compose.yml          ← À créer
+├── import_data.bat             ← À créer
+├── test_kg.py                  ← À créer
+└── INSTALLATION.txt            ← À créer
