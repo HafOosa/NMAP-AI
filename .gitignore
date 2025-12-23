@@ -1,0 +1,12 @@
+@"
+# Checkpoints
+models/*/checkpoint-*/
+
+# Python
+__pycache__/
+*.pyc
+
+# Autres
+*.log
+check_gpu.py
+"@ | Out-File -FilePath ".gitignore" -Encoding UTF8
