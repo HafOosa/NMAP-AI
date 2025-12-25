@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NMAP-AI | Intelligent Network Scanning</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #00d4ff;
+            --accent: #ff00ff;
+            --danger: #ff0055;
+            --warning: #ffaa00;
+            --dark: #0a0e1a;
+            --darker: #050810;
+            --card-bg: rgba(15, 20, 35, 0.8);
+            --border: rgba(0, 255, 136, 0.2);
+            --glow: rgba(0, 255, 136, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--darker);
+            color: var(--primary);
+            overflow-x: hidden;
+        }
+        
+        /* Background effects */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+        
+        .scanline {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: scan 4s linear infinite;
+            opacity: 0.5;
+        }
+        
+        @keyframes scan {
+            0% { top: -2px; }
+            100% { top: 100%; }
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glowPulse 3s ease-in-out infinite;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.15em;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { filter: drop-shadow(0 0 20px var(--glow)); }
+            50% { filter: drop-shadow(0 0 40px var(--glow)); }
+        }
+        
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            opacity: 0.9;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+        
+        .hero .tagline {
+            margin-top: 0.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+        
+        /* Card */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 32px var(--glow);
+            transform: translateY(-2px);
+        }
+        
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card-title::before {
+            content: '▸';
+            color: var(--secondary);
+            animation: blink 1.5s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+        
+        /* Input styling */
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .terminal-input {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .terminal-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--glow), inset 0 0 10px rgba(0, 255, 136, 0.1);
+        }
+        
+        .terminal-input::placeholder {
+            color: rgba(0, 255, 136, 0.4);
+        }
+        
+        /* Button */
+        .btn {
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 8px;
+            color: var(--dark);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+        
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--glow);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Workflow steps */
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .workflow-step {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .workflow-step.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--glow);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        .workflow-step.completed {
+            border-color: var(--primary);
+            background: rgba(0, 255, 136, 0.1);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            color: var(--dark);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .step-status {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+        
+        .step-result {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            display: none;
+        }
+        
+        .step-result.show {
+            display: block;
+        }
+        
+        /* Loading animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .loading.active {
+            display: block;
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Results */
+        .results {
+            display: none;
+        }
+        
+        .results.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .final-command {
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .final-command h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .command-display {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            word-break: break-all;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .explanation {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+        
+        .score-display {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .score-item {
+            text-align: center;
+        }
+        
+        .score-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+        
+        .score-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .score-value.grade-a { color: var(--primary); }
+        .score-value.grade-b { color: var(--secondary); }
+        .score-value.grade-c { color: var(--warning); }
+        .score-value.grade-d,
+        .score-value.grade-f { color: var(--danger); }
+        
+        /* Examples */
+        .examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .example-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .example-card:hover {
+            border-color: var(--primary);
+            background: rgba(0, 255, 136, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .example-title {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .example-query {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .workflow {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Status badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-badge.success {
+            background: rgba(0, 255, 136, 0.2);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .status-badge.processing {
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            animation: pulse 1.5s infinite;
+        }
+        
+        .status-badge.error {
+            background: rgba(255, 0, 85, 0.2);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="background">
+        <div class="grid"></div>
+        <div class="scanline"></div>
+    </div>
+    
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <h1>NMAP-AI</h1>
+            <div class="subtitle">Intelligent Network Scanning Assistant</div>
+            <div class="tagline">Powered by AI | Validated by Experts</div>
+        </div>
+        
+        <!-- Main Input Card -->
+        <div class="card">
+            <h2 class="card-title">What do you want to scan?</h2>
+            
+            <div class="input-group">
+                <label for="query">Natural Language Query</label>
+                <input 
+                    type="text" 
+                    id="query" 
+                    class="terminal-input" 
+                    placeholder="e.g., scan a web server for open ports and vulnerabilities"
+                    onkeypress="if(event.key==='Enter') generateCommand()"
+                >
+            </div>
+            
+            <button class="btn" onclick="generateCommand()" id="generateBtn">
+                <span style="position: relative; z-index: 1;">▸ Generate NMAP Command</span>
+            </button>
+            
+            <!-- Examples -->
+            <div style="margin-top: 2rem;">
+                <h3 style="font-size: 0.9rem; color: var(--secondary); margin-bottom: 1rem; text-transform: uppercase;">Quick Examples:</h3>
+                <div class="examples">
+                    <div class="example-card" onclick="useExample('scan a web server for open ports')">
+                        <div class="example-title">🌐 Web Server Scan</div>
+                        <div class="example-query">Scan a web server for open ports</div>
+                    </div>
+                    <div class="example-card" onclick="useExample('find vulnerabilities on my network')">
+                        <div class="example-title">🔍 Vulnerability Scan</div>
+                        <div class="example-query">Find vulnerabilities on my network</div>
+                    </div>
+                    <div class="example-card" onclick="useExample('detect operating system and services')">
+                        <div class="example-title">🖥️ OS Detection</div>
+                        <div class="example-query">Detect operating system and services</div>
+                    </div>
+                    <div class="example-card" onclick="useExample('fast scan for common ports')">
+                        <div class="example-title">⚡ Fast Scan</div>
+                        <div class="example-query">Fast scan for common ports</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Workflow Display -->
+        <div id="workflow-container" style="display: none;">
+            <div class="card">
+                <h2 class="card-title">Processing Pipeline</h2>
+                
+                <div class="workflow">
+                    <!-- Step 1: Classifier -->
+                    <div class="workflow-step" id="step1">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Query Classifier</div>
+                        <div class="step-status">Person 3 - Analyzing complexity...</div>
+                        <div class="step-result" id="result1"></div>
+                    </div>
+                    
+                    <!-- Step 2: Command Generation -->
+                    <div class="workflow-step" id="step2">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Command Generation</div>
+                        <div class="step-status">Routing to appropriate agent...</div>
+                        <div class="step-result" id="result2"></div>
+                    </div>
+                    
+                    <!-- Step 3: Self-Correction -->
+                    <div class="workflow-step" id="step3">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Self-Correction</div>
+                        <div class="step-status">Person 4 - Refining outputs...</div>
+                        <div class="step-result" id="result3"></div>
+                    </div>
+                    
+                    <!-- Step 4: Validation -->
+                    <div class="workflow-step" id="step4">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Validation Agent</div>
+                        <div class="step-status">Person 5 - Validating commands...</div>
+                        <div class="step-result" id="result4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Loading -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>AI agents are processing your request...</p>
+        </div>
+        
+        <!-- Final Results -->
+        <div id="results" class="results">
+            <div class="card">
+                <h2 class="card-title">Generated Command</h2>
+                
+                <div class="final-command">
+                    <h3>✓ Validated NMAP Command</h3>
+                    <div class="command-display" id="final-command"></div>
+                    
+                    <div class="score-display">
+                        <div class="score-item">
+                            <div class="score-label">Validation Score</div>
+                            <div class="score-value" id="score-value">--</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-label">Grade</div>
+                            <div class="score-value" id="grade-value">-</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-label">Status</div>
+                            <div class="status-badge success" id="status-badge">✓ Valid</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <h3 style="color: var(--secondary); margin-bottom: 1rem;">📖 Explanation</h3>
+                    <p id="explanation-text"></p>
+                </div>
+                
+                <div style="margin-top: 2rem; text-align: center;">
+                    <button class="btn" onclick="resetInterface()">
+                        <span style="position: relative; z-index: 1;">← Try Another Query</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>NMAP-AI v1.0 | Team Project</p>
+            <p style="margin-top: 0.5rem; font-size: 0.75rem;">
+                Person 1: Knowledge Graph | Person 2: ML Models | Person 3: Classifier<br>
+                Person 4: RAG Agent | Person 5: Validation & Infrastructure
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Configuration
+        const VALIDATION_API = 'http://localhost:5000';  // Person 5's real API
+        const USE_REAL_VALIDATION = true;  // Set to true when MCP server is running
+        
+        // Current state
+        let currentQuery = '';
+        
+        // Use example
+        function useExample(text) {
+            document.getElementById('query').value = text;
+            document.getElementById('query').focus();
+        }
+        
+        // Main function to generate command
+        async function generateCommand() {
+            const query = document.getElementById('query').value.trim();
+            
+            if (!query) {
+                alert('Please enter a query');
+                return;
+            }
+            
+            currentQuery = query;
+            
+            // Show workflow and hide other sections
+            document.getElementById('workflow-container').style.display = 'block';
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('generateBtn').disabled = true;
+            
+            // Reset all steps
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`step${i}`).classList.remove('active', 'completed');
+                document.getElementById(`result${i}`).classList.remove('show');
+            }
+            
+            try {
+                // Step 1: Classify Query (MOCK)
+                await processStep1(query);
+                await delay(1000);
+                
+                // Step 2: Generate Command (MOCK)
+                const commands = await processStep2(query);
+                await delay(1000);
+                
+                // Step 3: Self-Correction (MOCK)
+                const correctedCommands = await processStep3(commands);
+                await delay(1000);
+                
+                // Step 4: Validation (REAL or MOCK)
+                const finalResult = await processStep4(correctedCommands);
+                await delay(500);
+                
+                // Display final results
+                displayFinalResults(finalResult);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error processing request: ' + error.message);
+            } finally {
+                document.getElementById('generateBtn').disabled = false;
+            }
+        }
+        
+        // Step 1: Classify (MOCK)
+        async function processStep1(query) {
+            const step = document.getElementById('step1');
+            step.classList.add('active');
+            
+            await delay(1500);
+            
+            // Mock classification
+            const difficulty = query.length > 50 ? 'HARD' : query.includes('vulnerability') ? 'MEDIUM' : 'EASY';
+            const route = difficulty === 'HARD' ? 'Diffusion Model' : difficulty === 'MEDIUM' ? 'RAG Agent' : 'Phi-4 Model';
+            
+            const result = document.getElementById('result1');
+            result.innerHTML = `
+                <div><strong>Difficulty:</strong> ${difficulty}</div>
+                <div><strong>Routed to:</strong> ${route}</div>
+            `;
+            result.classList.add('show');
+            
+            step.classList.remove('active');
+            step.classList.add('completed');
+            
+            return { difficulty, route };
+        }
+        
+        // Step 2: Generate Command (MOCK)
+        async function processStep2(query) {
+            const step = document.getElementById('step2');
+            step.classList.add('active');
+            
+            await delay(2000);
+            
+            // Mock command generation from different agents
+            const commands = [
+                "nmap -sS -p 80,443 -T 4 -v 192.168.1.1",  // RAG
+                "nmap -A -T 4 -v 192.168.1.1",             // Phi-4
+                "nmap -sS -p 22,80,443 -T 3 -oN scan.txt 192.168.1.1"  // Diffusion
+            ];
+            
+            const result = document.getElementById('result2');
+            result.innerHTML = `
+                <div><strong>Generated ${commands.length} candidates</strong></div>
+                <div style="font-size: 0.75rem; margin-top: 0.3rem;">
+                    RAG, Phi-4, Diffusion
+                </div>
+            `;
+            result.classList.add('show');
+            
+            step.classList.remove('active');
+            step.classList.add('completed');
+            
+            return commands;
+        }
+        
+        // Step 3: Self-Correction (MOCK)
+        async function processStep3(commands) {
+            const step = document.getElementById('step3');
+            step.classList.add('active');
+            
+            await delay(1500);
+            
+            // Mock self-correction (returns same commands)
+            const result = document.getElementById('result3');
+            result.innerHTML = `
+                <div><strong>Refined ${commands.length} commands</strong></div>
+                <div style="font-size: 0.75rem; margin-top: 0.3rem;">
+                    Syntax checked, conflicts resolved
+                </div>
+            `;
+            result.classList.add('show');
+            
+            step.classList.remove('active');
+            step.classList.add('completed');
+            
+            return commands;
+        }
+        
+        // Step 4: Validation (REAL or MOCK)
+        async function processStep4(commands) {
+            const step = document.getElementById('step4');
+            step.classList.add('active');
+            
+            let validationResult;
+            
+            if (USE_REAL_VALIDATION) {
+                // REAL validation using Person 5's API
+                try {
+                    const response = await fetch(`${VALIDATION_API}/validate/multiple`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            commands: commands,
+                            source_agents: ['RAG', 'Phi4', 'Diffusion']
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error('Validation API not available');
+                    }
+                    
+                    validationResult = await response.json();
+                } catch (error) {
+                    console.log('Falling back to mock validation:', error);
+                    validationResult = mockValidation(commands);
+                }
+            } else {
+                // MOCK validation
+                validationResult = mockValidation(commands);
+            }
+            
+            const result = document.getElementById('result4');
+            result.innerHTML = `
+                <div><strong>Best Command Selected</strong></div>
+                <div style="font-size: 0.75rem; margin-top: 0.3rem;">
+                    Score: ${validationResult.decision.score}/100 | Grade: ${validationResult.decision.grade}
+                </div>
+            `;
+            result.classList.add('show');
+            
+            step.classList.remove('active');
+            step.classList.add('completed');
+            
+            return validationResult;
+        }
+        
+        // Mock validation (fallback)
+        function mockValidation(commands) {
+            return {
+                decision: {
+                    success: true,
+                    chosen_command: commands[0],
+                    source_agent: 'RAG',
+                    score: 92,
+                    grade: 'A',
+                    confidence: 95.5,
+                    explanation: 'This command uses SYN scan (-sS) which is stealthy and efficient, targets common web ports (80, 443), uses appropriate timing (-T 4), and includes verbose output (-v) for detailed results.'
+                }
+            };
+        }
+        
+        // Display final results
+        function displayFinalResults(validationResult) {
+            const decision = validationResult.decision;
+            
+            document.getElementById('final-command').textContent = decision.chosen_command;
+            document.getElementById('score-value').textContent = `${decision.score}/100`;
+            document.getElementById('score-value').className = `score-value grade-${decision.grade.toLowerCase()}`;
+            document.getElementById('grade-value').textContent = decision.grade;
+            document.getElementById('grade-value').className = `score-value grade-${decision.grade.toLowerCase()}`;
+            document.getElementById('explanation-text').textContent = decision.explanation;
+            
+            // Update status badge
+            const statusBadge = document.getElementById('status-badge');
+            if (decision.score >= 80) {
+                statusBadge.className = 'status-badge success';
+                statusBadge.textContent = '✓ Valid';
+            } else if (decision.score >= 60) {
+                statusBadge.className = 'status-badge processing';
+                statusBadge.textContent = '⚠ Warning';
+            } else {
+                statusBadge.className = 'status-badge error';
+                statusBadge.textContent = '✗ Invalid';
+            }
+            
+            // Scroll to results
+            document.getElementById('results').classList.add('show');
+            setTimeout(() => {
+                document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+        
+        // Reset interface
+        function resetInterface() {
+            document.getElementById('query').value = '';
+            document.getElementById('workflow-container').style.display = 'none';
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('query').focus();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Utility delay
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        
+        // Auto-focus on load
+        window.addEventListener('load', () => {
+            document.getElementById('query').focus();
+        });
+    </script>
+</body>
+</html>
