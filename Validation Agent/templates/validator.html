@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NMAP Validator - Enterprise</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --accent: #0369a1;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --border: #e2e8f0;
+            --success: #16a34a;
+            --warning: #f59e0b;
+            --error: #dc2626;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            display: flex;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-primary);
+            border-right: 1px solid var(--border);
+            padding: 2rem 0;
+            overflow-y: auto;
+            flex-shrink: 0;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .sidebar-header {
+            padding: 0 1.5rem 2.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .logo h1 {
+            font-size: 1.25em;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .logo p {
+            font-size: 0.75em;
+            color: var(--text-secondary);
+        }
+
+        /* NAVIGATION */
+        .nav-menu {
+            list-style: none;
+            padding: 1.5rem 0;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background: var(--bg-tertiary);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            background: var(--bg-secondary);
+            border-left-color: var(--primary);
+        }
+
+        .sidebar-section {
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            padding: 0 1.5rem 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* MAIN CONTAINER */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .header-title h1 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .header-title p {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+        }
+
+        /* CARD */
+        .card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.08);
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* INPUT GROUP */
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-field {
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Courier New', monospace;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            transition: all 0.2s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        /* BUTTONS */
+        .btn {
+            padding: 0.875rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95em;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(30, 64, 175, 0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* EXAMPLES */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .example-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .example-card:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(30, 64, 175, 0.1);
+        }
+
+        .example-badge {
+            display: inline-block;
+            padding: 0.375rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75em;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-valid { background: #dcfce7; color: #166534; }
+        .badge-warning { background: #fef3c7; color: #92400e; }
+        .badge-invalid { background: #fee2e2; color: #991b1b; }
+
+        .example-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            color: var(--text-secondary);
+        }
+
+        /* RESULTS */
+        .results {
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .result-header.valid {
+            border-left-color: var(--success);
+            background: #f0fdf4;
+        }
+
+        .result-header.invalid {
+            border-left-color: var(--error);
+            background: #fef2f2;
+        }
+
+        .result-info h3 {
+            font-size: 1.25em;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .command-display {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .status-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .status-chip.valid {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-chip.invalid {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .score-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .score-circle.grade-a {
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+            color: white;
+        }
+
+        .score-circle.grade-b {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+
+        .score-circle.grade-c {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            color: white;
+        }
+
+        .score-circle.grade-d,
+        .score-circle.grade-f {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+        }
+
+        .score-value {
+            font-size: 1.75em;
+        }
+
+        .score-label {
+            font-size: 0.75em;
+            opacity: 0.9;
+        }
+
+        /* COMPONENTS */
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .component-card {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .component-card.success {
+            border-left-color: var(--success);
+            background: #f0fdf4;
+        }
+
+        .component-card.error {
+            border-left-color: var(--error);
+            background: #fef2f2;
+        }
+
+        .component-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .component-name {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+        }
+
+        .component-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            font-weight: 700;
+        }
+
+        .component-card.success .component-icon {
+            background: var(--success);
+            color: white;
+        }
+
+        .component-card.error .component-icon {
+            background: var(--error);
+            color: white;
+        }
+
+        .component-score {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .component-weight {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--success);
+            transition: width 0.5s ease;
+        }
+
+        .component-card.error .progress-fill {
+            background: var(--error);
+        }
+
+        /* ISSUES */
+        .issues-section {
+            margin-top: 2rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125em;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .issue-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+        }
+
+        .issue-item.error {
+            border-left-color: var(--error);
+            background: #fef2f2;
+        }
+
+        .issue-item.warning {
+            border-left-color: var(--warning);
+            background: #fffbeb;
+        }
+
+        .issue-item.suggestion {
+            border-left-color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .issue-icon {
+            font-size: 1.25em;
+        }
+
+        .issue-content {
+            flex: 1;
+        }
+
+        .issue-type {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .issue-item.error .issue-type {
+            color: var(--error);
+        }
+
+        .issue-item.warning .issue-type {
+            color: var(--warning);
+        }
+
+        .issue-item.suggestion .issue-type {
+            color: var(--primary);
+        }
+
+        .issue-message {
+            font-size: 0.95em;
+            color: var(--text-primary);
+        }
+
+        /* ALERTS */
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .alert-success {
+            background: #f0fdf4;
+            border-left-color: var(--success);
+            color: #166534;
+        }
+
+        .alert-error {
+            background: #fef2f2;
+            border-left-color: var(--error);
+            color: #991b1b;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .main {
+                padding: 1rem;
+            }
+
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+
+            .components-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .result-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .score-circle {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-shield-check"></i></div>
+                <div>
+                    <h1>Validator</h1>
+                    <p>Enterprise</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-section">
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active"><i class="fas fa-check-circle"></i> Validation</a></li>
+                <li><a href="#" class="nav-link"><i class="fas fa-history"></i> Historique</a></li>
+                <li><a href="#" class="nav-link"><i class="fas fa-cog"></i> Configuration</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-section">
+            <div class="section-title">Statistiques</div>
+            <div style="padding: 0 1.5rem; color: var(--text-secondary); font-size: 0.9em; line-height: 1.8;">
+                <p><strong>Validations:</strong> <span id="totalValidations">0</span></p>
+                <p><strong>Réussites:</strong> <span id="successCount">0</span></p>
+                <p><strong>Taux:</strong> <span id="successRate">0%</span></p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-wrapper">
+        <main class="main">
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <div class="header-title">
+                    <h1>Validateur de Commandes</h1>
+                    <p>Vérifiez la qualité et la sécurité de vos commandes NMAP</p>
+                </div>
+            </div>
+
+            <!-- INPUT SECTION -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-terminal"></i> Commande à Valider
+                </div>
+
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        class="input-field" 
+                        id="commandInput"
+                        placeholder="nmap -sS -p 80,443 -T 4 -v 192.168.1.1"
+                        onkeypress="if(event.key==='Enter') validateCommand()"
+                    >
+                    <button class="btn" onclick="validateCommand()" id="validateBtn">
+                        <i class="fas fa-check"></i> Valider
+                    </button>
+                </div>
+
+                <h3 style="color: var(--text-secondary); font-size: 0.95em; font-weight: 600; margin-bottom: 1rem; margin-top: 1.5rem;">Exemples de Test:</h3>
+                <div class="examples-grid">
+                    <div class="example-card" onclick="setCommand('nmap -sS -p 80,443 -T 4 -v 192.168.1.1')">
+                        <span class="example-badge badge-valid">✓ Valid</span>
+                        <div class="example-text">nmap -sS -p 80,443 -T 4 -v 192.168.1.1</div>
+                    </div>
+                    <div class="example-card" onclick="setCommand('nmap -A 192.168.1.1')">
+                        <span class="example-badge badge-warning">⚠ Warnings</span>
+                        <div class="example-text">nmap -A 192.168.1.1</div>
+                    </div>
+                    <div class="example-card" onclick="setCommand('nmap -sS -sT 192.168.1.1')">
+                        <span class="example-badge badge-invalid">✗ Invalid</span>
+                        <div class="example-text">nmap -sS -sT 192.168.1.1</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESULTS -->
+            <div id="results" class="results">
+                <div class="card">
+                    <!-- RESULT HEADER -->
+                    <div class="result-header" id="resultHeader">
+                        <div class="result-info">
+                            <h3>Résultat de Validation</h3>
+                            <div class="command-display" id="commandDisplay"></div>
+                            <span class="status-chip" id="statusChip">Valid</span>
+                        </div>
+                        <div class="score-circle" id="scoreCircle">
+                            <div class="score-value" id="scoreValue">--</div>
+                            <div class="score-label" id="gradeValue">-</div>
+                        </div>
+                    </div>
+
+                    <!-- COMPONENTS -->
+                    <h3 class="section-subtitle">Analyse des Composants</h3>
+                    <div class="components-grid" id="componentsGrid"></div>
+
+                    <!-- ISSUES -->
+                    <div id="issuesSection" class="issues-section" style="display: none;">
+                        <h3 class="section-subtitle">Problèmes Détectés</h3>
+                        <div id="issuesList"></div>
+                    </div>
+
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <button class="btn" onclick="resetValidator()">
+                            <i class="fas fa-redo"></i> Nouvelle Validation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // API URL - changed to use relative path for Flask
+        const API_URL = '/api';
+        let stats = JSON.parse(localStorage.getItem('validator_stats') || '{"total": 0, "success": 0}');
+
+        function setCommand(cmd) {
+            document.getElementById('commandInput').value = cmd;
+            document.getElementById('commandInput').focus();
+        }
+
+        async function validateCommand() {
+            const command = document.getElementById('commandInput').value.trim();
+            
+            if (!command) {
+                showAlert('Veuillez entrer une commande', 'error');
+                return;
+            }
+
+            document.getElementById('validateBtn').disabled = true;
+
+            try {
+                const response = await fetch(`${API_URL}/validate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ command: command, verbose: true })
+                });
+
+                if (!response.ok) {
+                    throw new Error('API non disponible');
+                }
+
+                const result = await response.json();
+                displayResults(result, command);
+                updateStats(result.valid);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showAlert('Erreur de connexion à l\'API. Serveur démarré?', 'error');
+            } finally {
+                document.getElementById('validateBtn').disabled = false;
+            }
+        }
+
+        function displayResults(result, command) {
+            const header = document.getElementById('resultHeader');
+            const statusChip = document.getElementById('statusChip');
+            
+            document.getElementById('commandDisplay').textContent = command;
+            document.getElementById('scoreValue').textContent = result.score;
+            document.getElementById('gradeValue').textContent = `Grade ${result.grade}`;
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            scoreCircle.className = `score-circle grade-${result.grade.toLowerCase()}`;
+            
+            if (result.valid) {
+                header.className = 'result-header valid';
+                statusChip.className = 'status-chip valid';
+                statusChip.innerHTML = '<i class="fas fa-check"></i> Valide';
+            } else {
+                header.className = 'result-header invalid';
+                statusChip.className = 'status-chip invalid';
+                statusChip.innerHTML = '<i class="fas fa-times"></i> Invalide';
+            }
+
+            // Components
+            const componentsHtml = Object.entries(result.components).map(([name, data]) => {
+                const status = data.passed ? 'success' : 'error';
+                const icon = data.passed ? '✓' : '✗';
+                const weights = { syntax: '30%', conflicts: '40%', heuristics: '30%' };
+                
+                return `
+                    <div class="component-card ${status}">
+                        <div class="component-header">
+                            <div class="component-name">${name}</div>
+                            <div class="component-icon">${icon}</div>
+                        </div>
+                        <div class="component-score">${data.score}</div>
+                        <div class="component-weight">Poids: ${weights[name] || 'N/A'}</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${data.score}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('componentsGrid').innerHTML = componentsHtml;
+
+            // Issues
+            const allIssues = [
+                ...result.issues.errors.map(msg => ({ type: 'error', msg })),
+                ...result.issues.warnings.map(msg => ({ type: 'warning', msg })),
+                ...result.issues.suggestions.map(msg => ({ type: 'suggestion', msg }))
+            ];
+
+            const issuesSection = document.getElementById('issuesSection');
+            const issuesList = document.getElementById('issuesList');
+
+            if (allIssues.length > 0) {
+                issuesSection.style.display = 'block';
+                const icons = { error: 'fa-times-circle', warning: 'fa-exclamation-triangle', suggestion: 'fa-info-circle' };
+                
+                issuesList.innerHTML = allIssues.map(issue => `
+                    <div class="issue-item ${issue.type}">
+                        <div class="issue-icon"><i class="fas ${icons[issue.type]}"></i></div>
+                        <div class="issue-content">
+                            <div class="issue-type">${issue.type}</div>
+                            <div class="issue-message">${issue.msg}</div>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                issuesSection.style.display = 'none';
+            }
+
+            document.getElementById('results').classList.add('show');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+            showAlert('✓ Validation terminée!', 'success');
+        }
+
+        function updateStats(isValid) {
+            stats.total++;
+            if (isValid) stats.success++;
+            localStorage.setItem('validator_stats', JSON.stringify(stats));
+            
+            document.getElementById('totalValidations').textContent = stats.total;
+            document.getElementById('successCount').textContent = stats.success;
+            document.getElementById('successRate').textContent = 
+                stats.total > 0 ? Math.round((stats.success / stats.total) * 100) + '%' : '0%';
+        }
+
+        function resetValidator() {
+            document.getElementById('commandInput').value = '';
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('commandInput').focus();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showAlert(message, type = 'info') {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            const icons = { success: 'check', error: 'times' };
+            alert.innerHTML = `<i class="fas fa-${icons[type]}"></i> ${message}`;
+            
+            const main = document.querySelector('.main');
+            main.insertBefore(alert, main.firstChild);
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        // Initialize stats
+        document.getElementById('totalValidations').textContent = stats.total;
+        document.getElementById('successCount').textContent = stats.success;
+        document.getElementById('successRate').textContent = 
+            stats.total > 0 ? Math.round((stats.success / stats.total) * 100) + '%' : '0%';
+        
+        window.addEventListener('load', () => {
+            document.getElementById('commandInput').focus();
+        });
+    </script>
+</body>
+</html>
