@@ -1,0 +1,1202 @@
+[
+  {
+    "input_text": "translate to nmap: Detect service versions on 192.168.1.0/24",
+    "target_text": "nmap -sV 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Ping scan on 172.16.0.1",
+    "target_text": "nmap -sn 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Test RDP on 192.168.0.0/24",
+    "target_text": "nmap -p 3389 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Detect service versions on 10.10.10.0/24",
+    "target_text": "nmap -sV 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Discover active hosts on 10.0.0.0/24",
+    "target_text": "nmap -sn 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports with service detection on 172.16.0.1",
+    "target_text": "nmap -p- -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Aggressive scan on 172.16.0.1",
+    "target_text": "nmap -A 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Complete scan with version detection on 10.0.0.0/24",
+    "target_text": "nmap -p- -sV 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check service versions on 192.168.100.0/24",
+    "target_text": "nmap -sV 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports on 192.168.0.0/24",
+    "target_text": "nmap -p- 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: OS detection with version scan on 192.168.0.0/24",
+    "target_text": "nmap -O -sV 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Aggressive scan on 10.10.10.0/24",
+    "target_text": "nmap -A 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 80 on 10.0.0.0/24",
+    "target_text": "nmap -p 80 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan of SMTP on 172.16.0.1",
+    "target_text": "nmap -p 25 -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan SNMP with OS detection on 192.168.1.1",
+    "target_text": "nmap -p 161 -O 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Probe DNS service on 10.10.10.0/24",
+    "target_text": "nmap -p 53 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check if port 22 is open on 172.16.0.0/24",
+    "target_text": "nmap -p 22 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan FTP port on 10.10.10.0/24",
+    "target_text": "nmap -p 21 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan HTTP port on 172.16.0.0/24",
+    "target_text": "nmap -p 80 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Complete port scan on 172.16.0.0/24",
+    "target_text": "nmap -p- 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan of SNMP on 172.16.0.1",
+    "target_text": "nmap -p 161 -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 3389 with version detection on 192.168.1.1",
+    "target_text": "nmap -p 3389 -sV 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Complete port scan on 10.10.10.0/24",
+    "target_text": "nmap -p- 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan on 192.168.1.0/24",
+    "target_text": "nmap -sV 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check DNS and detect OS on 172.16.0.1",
+    "target_text": "nmap -p 53 -O 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Ping scan on 192.168.0.0/24",
+    "target_text": "nmap -sn 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Discover active hosts on 10.10.10.0/24",
+    "target_text": "nmap -sn 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 3389 with version detection on 192.168.100.0/24",
+    "target_text": "nmap -p 3389 -sV 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Discover active hosts on 10.10.10.0/24",
+    "target_text": "nmap -sn 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Aggressive scan on 192.168.0.0/24",
+    "target_text": "nmap -A 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Complete port scan on 10.10.10.0/24",
+    "target_text": "nmap -p- 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports with service detection on 192.168.0.0/24",
+    "target_text": "nmap -p- -sV 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Full port scan on 172.16.0.0/24",
+    "target_text": "nmap -p- 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Complete port scan on 10.0.0.1",
+    "target_text": "nmap -p- 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: OS detection with version scan on 192.168.100.0/24",
+    "target_text": "nmap -O -sV 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan Telnet port on 192.168.0.0/24",
+    "target_text": "nmap -p 23 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check Telnet and detect OS on 192.168.100.0/24",
+    "target_text": "nmap -p 23 -O 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check all 65535 ports on 10.10.10.0/24",
+    "target_text": "nmap -p- 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan on 10.0.0.0/24",
+    "target_text": "nmap -sV 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Probe FTP service on 10.0.0.1",
+    "target_text": "nmap -p 21 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Host discovery on 172.16.0.1",
+    "target_text": "nmap -sn 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Check if port 443 is open on 10.10.10.0/24",
+    "target_text": "nmap -p 443 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Aggressive scan on 192.168.1.0/24",
+    "target_text": "nmap -A 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Detect service versions on 10.0.0.1",
+    "target_text": "nmap -sV 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Ping scan on 172.16.0.1",
+    "target_text": "nmap -sn 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Version scan of SNMP on 192.168.0.0/24",
+    "target_text": "nmap -p 161 -sV 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports on 10.10.10.0/24",
+    "target_text": "nmap -p- 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify OS on 10.0.0.1",
+    "target_text": "nmap -O 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 10.0.0.0/24",
+    "target_text": "nmap -O 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 10.0.0.0/24",
+    "target_text": "nmap -O 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 10.10.10.0/24",
+    "target_text": "nmap -O 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify OS on 10.10.10.0/24",
+    "target_text": "nmap -O 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Quick ping scan on 192.168.1.0/24",
+    "target_text": "nmap -sn 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan HTTPS port on 192.168.0.0/24",
+    "target_text": "nmap -p 443 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Probe RDP service on 192.168.100.0/24",
+    "target_text": "nmap -p 3389 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Full port scan on 172.16.0.1",
+    "target_text": "nmap -p- 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Identify OS on 192.168.1.0/24",
+    "target_text": "nmap -O 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Perform OS detection on 192.168.0.0/24",
+    "target_text": "nmap -O 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan on 10.0.0.0/24",
+    "target_text": "nmap -sV 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Perform OS detection on 192.168.1.0/24",
+    "target_text": "nmap -O 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Perform OS detection on 10.10.10.0/24",
+    "target_text": "nmap -O 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify OS on 10.0.0.1",
+    "target_text": "nmap -O 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Discover active hosts on 192.168.0.0/24",
+    "target_text": "nmap -sn 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Probe SSH service on 192.168.0.0/24",
+    "target_text": "nmap -p 22 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Complete port scan on 10.10.10.0/24",
+    "target_text": "nmap -p- 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan of HTTPS on 192.168.1.1",
+    "target_text": "nmap -p 443 -sV 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Test HTTP on 172.16.0.0/24",
+    "target_text": "nmap -p 80 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Detect service versions on 192.168.1.0/24",
+    "target_text": "nmap -sV 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Quick ping scan on 192.168.1.0/24",
+    "target_text": "nmap -sn 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 192.168.1.0/24",
+    "target_text": "nmap -O 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Discover active hosts on 10.0.0.1",
+    "target_text": "nmap -sn 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Version scan on 10.0.0.1",
+    "target_text": "nmap -sV 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Ping scan on 192.168.0.0/24",
+    "target_text": "nmap -sn 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports with service detection on 10.10.10.0/24",
+    "target_text": "nmap -p- -sV 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Quick ping scan on 192.168.1.0/24",
+    "target_text": "nmap -sn 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan SSH with OS detection on 172.16.0.0/24",
+    "target_text": "nmap -p 22 -O 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify service versions on 192.168.1.0/24",
+    "target_text": "nmap -sV 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan HTTPS with OS detection on 172.16.0.1",
+    "target_text": "nmap -p 443 -O 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Host discovery on 10.0.0.0/24",
+    "target_text": "nmap -sn 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check if port 161 is open on 10.0.0.0/24",
+    "target_text": "nmap -p 161 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports on 192.168.1.0/24",
+    "target_text": "nmap -p- 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 192.168.1.0/24",
+    "target_text": "nmap -O 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 192.168.1.0/24",
+    "target_text": "nmap -O 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Host discovery on 10.0.0.1",
+    "target_text": "nmap -sn 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports with service detection on 10.0.0.1",
+    "target_text": "nmap -p- -sV 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports with service detection on 172.16.0.1",
+    "target_text": "nmap -p- -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 192.168.1.1",
+    "target_text": "nmap -O 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 192.168.0.0/24",
+    "target_text": "nmap -O 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Aggressive scan on 172.16.0.1",
+    "target_text": "nmap -A 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Check all 65535 ports on 192.168.1.0/24",
+    "target_text": "nmap -p- 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 172.16.0.1",
+    "target_text": "nmap -O 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan HTTP port on 10.0.0.0/24",
+    "target_text": "nmap -p 80 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Full scan with OS detection on 172.16.0.1",
+    "target_text": "nmap -p- -O 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Test DNS on 192.168.1.1",
+    "target_text": "nmap -p 53 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Service fingerprinting on 172.16.0.1",
+    "target_text": "nmap -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Detect operating system on 192.168.0.0/24",
+    "target_text": "nmap -O 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan on 192.168.0.0/24",
+    "target_text": "nmap -sV 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: OS detection with version scan on 10.0.0.0/24",
+    "target_text": "nmap -O -sV 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Complete scan with version detection on 192.168.100.0/24",
+    "target_text": "nmap -p- -sV 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports with service detection on 10.10.10.0/24",
+    "target_text": "nmap -p- -sV 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify OS on 192.168.1.1",
+    "target_text": "nmap -O 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 10.0.0.1",
+    "target_text": "nmap -O 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports on 172.16.0.0/24",
+    "target_text": "nmap -p- 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check service versions on 10.0.0.0/24",
+    "target_text": "nmap -sV 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify service versions on 192.168.0.0/24",
+    "target_text": "nmap -sV 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Perform OS detection on 192.168.1.0/24",
+    "target_text": "nmap -O 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 10.0.0.1",
+    "target_text": "nmap -O 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Aggressive scan on 192.168.1.0/24",
+    "target_text": "nmap -A 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 25 with version detection on 192.168.100.0/24",
+    "target_text": "nmap -p 25 -sV 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 161 on 10.0.0.1",
+    "target_text": "nmap -p 161 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 3389 with version detection on 172.16.0.0/24",
+    "target_text": "nmap -p 3389 -sV 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Service fingerprinting on 192.168.1.1",
+    "target_text": "nmap -sV 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: OS fingerprinting on 172.16.0.0/24",
+    "target_text": "nmap -O 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Complete scan with version detection on 10.0.0.0/24",
+    "target_text": "nmap -p- -sV 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Host discovery on 192.168.1.0/24",
+    "target_text": "nmap -sn 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Full port scan on 10.0.0.0/24",
+    "target_text": "nmap -p- 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan FTP port on 172.16.0.1",
+    "target_text": "nmap -p 21 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Probe HTTPS service on 192.168.100.0/24",
+    "target_text": "nmap -p 443 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Quick ping scan on 10.0.0.0/24",
+    "target_text": "nmap -sn 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan HTTP port on 10.10.10.0/24",
+    "target_text": "nmap -p 80 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Full port scan on 10.10.10.0/24",
+    "target_text": "nmap -p- 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Aggressive scan on 10.10.10.0/24",
+    "target_text": "nmap -A 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Test FTP on 192.168.1.1",
+    "target_text": "nmap -p 21 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Aggressive scan on 10.0.0.1",
+    "target_text": "nmap -A 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Ping scan on 10.0.0.0/24",
+    "target_text": "nmap -sn 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: OS detection with version scan on 10.10.10.0/24",
+    "target_text": "nmap -O -sV 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check which hosts are up on 10.0.0.1",
+    "target_text": "nmap -sn 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports with service detection on 172.16.0.1",
+    "target_text": "nmap -p- -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Check DNS and detect OS on 192.168.1.0/24",
+    "target_text": "nmap -p 53 -O 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Quick ping scan on 10.10.10.0/24",
+    "target_text": "nmap -sn 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Test MySQL on 192.168.1.1",
+    "target_text": "nmap -p 3306 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Probe SSH service on 172.16.0.0/24",
+    "target_text": "nmap -p 22 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Full scan with OS detection on 172.16.0.1",
+    "target_text": "nmap -p- -O 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Aggressive scan on 10.0.0.0/24",
+    "target_text": "nmap -A 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Quick ping scan on 172.16.0.0/24",
+    "target_text": "nmap -sn 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Host discovery on 10.10.10.0/24",
+    "target_text": "nmap -sn 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Ping scan on 10.0.0.0/24",
+    "target_text": "nmap -sn 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify service versions on 10.0.0.1",
+    "target_text": "nmap -sV 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Service fingerprinting on 10.10.10.0/24",
+    "target_text": "nmap -sV 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan HTTPS with OS detection on 192.168.1.0/24",
+    "target_text": "nmap -p 443 -O 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Probe FTP service on 192.168.1.1",
+    "target_text": "nmap -p 21 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Check if port 80 is open on 10.0.0.0/24",
+    "target_text": "nmap -p 80 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check RDP and detect OS on 192.168.100.0/24",
+    "target_text": "nmap -p 3389 -O 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Detect service versions on 172.16.0.0/24",
+    "target_text": "nmap -sV 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: OS detection with version scan on 192.168.1.0/24",
+    "target_text": "nmap -O -sV 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify service versions on 172.16.0.1",
+    "target_text": "nmap -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Full scan with OS detection on 10.0.0.1",
+    "target_text": "nmap -p- -O 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Service fingerprinting on 10.0.0.0/24",
+    "target_text": "nmap -sV 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Probe MySQL service on 172.16.0.0/24",
+    "target_text": "nmap -p 3306 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Ping scan on 10.10.10.0/24",
+    "target_text": "nmap -sn 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Full scan with OS detection on 192.168.100.0/24",
+    "target_text": "nmap -p- -O 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: OS detection with version scan on 192.168.100.0/24",
+    "target_text": "nmap -O -sV 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 80 with version detection on 192.168.1.0/24",
+    "target_text": "nmap -p 80 -sV 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 23 on 192.168.0.0/24",
+    "target_text": "nmap -p 23 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Detect operating system on 172.16.0.1",
+    "target_text": "nmap -O 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 161 on 192.168.1.0/24",
+    "target_text": "nmap -p 161 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check service versions on 192.168.1.1",
+    "target_text": "nmap -sV 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Check which hosts are up on 10.0.0.0/24",
+    "target_text": "nmap -sn 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: OS detection with version scan on 192.168.1.0/24",
+    "target_text": "nmap -O -sV 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan SSH with OS detection on 10.10.10.0/24",
+    "target_text": "nmap -p 22 -O 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Test MySQL on 192.168.100.0/24",
+    "target_text": "nmap -p 3306 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify OS on 172.16.0.1",
+    "target_text": "nmap -O 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Aggressive scan on 192.168.100.0/24",
+    "target_text": "nmap -A 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Host discovery on 172.16.0.1",
+    "target_text": "nmap -sn 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Detect service versions on 172.16.0.1",
+    "target_text": "nmap -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Discover active hosts on 192.168.1.1",
+    "target_text": "nmap -sn 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Discover active hosts on 192.168.1.1",
+    "target_text": "nmap -sn 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan SMTP port on 192.168.100.0/24",
+    "target_text": "nmap -p 25 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify service versions on 10.0.0.1",
+    "target_text": "nmap -sV 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 10.0.0.1",
+    "target_text": "nmap -O 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan HTTPS with OS detection on 10.0.0.1",
+    "target_text": "nmap -p 443 -O 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Test MySQL on 172.16.0.0/24",
+    "target_text": "nmap -p 3306 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Perform OS detection on 10.10.10.0/24",
+    "target_text": "nmap -O 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Complete scan with version detection on 10.10.10.0/24",
+    "target_text": "nmap -p- -sV 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan RDP port on 10.10.10.0/24",
+    "target_text": "nmap -p 3389 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify OS on 192.168.1.0/24",
+    "target_text": "nmap -O 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan on 172.16.0.0/24",
+    "target_text": "nmap -sV 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check if port 80 is open on 192.168.0.0/24",
+    "target_text": "nmap -p 80 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Quick ping scan on 192.168.1.1",
+    "target_text": "nmap -sn 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Probe MySQL service on 172.16.0.0/24",
+    "target_text": "nmap -p 3306 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify OS on 192.168.0.0/24",
+    "target_text": "nmap -O 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Quick ping scan on 172.16.0.1",
+    "target_text": "nmap -sn 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: OS detection with version scan on 10.0.0.1",
+    "target_text": "nmap -O -sV 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Discover active hosts on 192.168.1.1",
+    "target_text": "nmap -sn 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Service fingerprinting on 192.168.0.0/24",
+    "target_text": "nmap -sV 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan SSH with OS detection on 192.168.1.0/24",
+    "target_text": "nmap -p 22 -O 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Complete scan with version detection on 10.0.0.0/24",
+    "target_text": "nmap -p- -sV 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan FTP with OS detection on 10.10.10.0/24",
+    "target_text": "nmap -p 21 -O 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Discover active hosts on 192.168.1.1",
+    "target_text": "nmap -sn 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Complete port scan on 172.16.0.0/24",
+    "target_text": "nmap -p- 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Complete scan with version detection on 172.16.0.0/24",
+    "target_text": "nmap -p- -sV 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Ping scan on 192.168.0.0/24",
+    "target_text": "nmap -sn 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check which hosts are up on 10.0.0.1",
+    "target_text": "nmap -sn 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Detect operating system on 192.168.1.1",
+    "target_text": "nmap -O 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Check service versions on 192.168.1.0/24",
+    "target_text": "nmap -sV 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan on 172.16.0.0/24",
+    "target_text": "nmap -sV 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify OS on 192.168.1.0/24",
+    "target_text": "nmap -O 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check SNMP and detect OS on 10.0.0.0/24",
+    "target_text": "nmap -p 161 -O 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports on 172.16.0.1",
+    "target_text": "nmap -p- 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: OS detection with version scan on 172.16.0.0/24",
+    "target_text": "nmap -O -sV 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan FTP with OS detection on 10.10.10.0/24",
+    "target_text": "nmap -p 21 -O 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 172.16.0.1",
+    "target_text": "nmap -O 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Complete port scan on 192.168.1.1",
+    "target_text": "nmap -p- 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Identify service versions on 10.0.0.1",
+    "target_text": "nmap -sV 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Probe HTTPS service on 10.0.0.1",
+    "target_text": "nmap -p 443 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Detect service versions on 192.168.0.0/24",
+    "target_text": "nmap -sV 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 192.168.100.0/24",
+    "target_text": "nmap -O 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify OS on 192.168.1.0/24",
+    "target_text": "nmap -O 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan FTP with OS detection on 10.0.0.1",
+    "target_text": "nmap -p 21 -O 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Detect service versions on 172.16.0.1",
+    "target_text": "nmap -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Probe SSH service on 192.168.100.0/24",
+    "target_text": "nmap -p 22 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Test DNS on 192.168.0.0/24",
+    "target_text": "nmap -p 53 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Detect service versions on 10.10.10.0/24",
+    "target_text": "nmap -sV 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Host discovery on 192.168.1.1",
+    "target_text": "nmap -sn 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Check MySQL and detect OS on 10.10.10.0/24",
+    "target_text": "nmap -p 3306 -O 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Perform OS detection on 192.168.100.0/24",
+    "target_text": "nmap -O 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports on 192.168.100.0/24",
+    "target_text": "nmap -p- 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: OS fingerprinting on 192.168.0.0/24",
+    "target_text": "nmap -O 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan of FTP on 192.168.1.0/24",
+    "target_text": "nmap -p 21 -sV 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan SSH port on 10.0.0.1",
+    "target_text": "nmap -p 22 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Identify OS on 10.0.0.0/24",
+    "target_text": "nmap -O 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 172.16.0.1",
+    "target_text": "nmap -O 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan SMTP port on 172.16.0.0/24",
+    "target_text": "nmap -p 25 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 192.168.1.1",
+    "target_text": "nmap -O 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan MySQL port on 192.168.1.1",
+    "target_text": "nmap -p 3306 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan RDP with OS detection on 192.168.1.0/24",
+    "target_text": "nmap -p 3389 -O 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan of SSH on 192.168.1.0/24",
+    "target_text": "nmap -p 22 -sV 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check if port 3306 is open on 172.16.0.1",
+    "target_text": "nmap -p 3306 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 192.168.0.0/24",
+    "target_text": "nmap -O 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Perform OS detection on 172.16.0.1",
+    "target_text": "nmap -O 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Probe HTTP service on 10.10.10.0/24",
+    "target_text": "nmap -p 80 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check service versions on 10.0.0.1",
+    "target_text": "nmap -sV 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Aggressive scan on 10.0.0.1",
+    "target_text": "nmap -A 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Check if port 443 is open on 172.16.0.0/24",
+    "target_text": "nmap -p 443 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 161 with version detection on 192.168.1.1",
+    "target_text": "nmap -p 161 -sV 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Detect operating system on 172.16.0.0/24",
+    "target_text": "nmap -O 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan on 10.0.0.1",
+    "target_text": "nmap -sV 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Host discovery on 10.10.10.0/24",
+    "target_text": "nmap -sn 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check all 65535 ports on 10.10.10.0/24",
+    "target_text": "nmap -p- 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports with service detection on 172.16.0.1",
+    "target_text": "nmap -p- -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Detect operating system on 10.0.0.0/24",
+    "target_text": "nmap -O 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: OS fingerprinting on 172.16.0.1",
+    "target_text": "nmap -O 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Host discovery on 172.16.0.1",
+    "target_text": "nmap -sn 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Detect service versions on 192.168.0.0/24",
+    "target_text": "nmap -sV 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Probe MySQL service on 10.0.0.1",
+    "target_text": "nmap -p 3306 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Detect service versions on 192.168.1.1",
+    "target_text": "nmap -sV 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Detect operating system on 10.0.0.1",
+    "target_text": "nmap -O 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan DNS port on 192.168.1.0/24",
+    "target_text": "nmap -p 53 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check all 65535 ports on 172.16.0.0/24",
+    "target_text": "nmap -p- 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Identify service versions on 192.168.0.0/24",
+    "target_text": "nmap -sV 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Complete port scan on 192.168.0.0/24",
+    "target_text": "nmap -p- 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Test RDP on 10.0.0.0/24",
+    "target_text": "nmap -p 3389 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan on 10.10.10.0/24",
+    "target_text": "nmap -sV 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Full port scan on 192.168.1.0/24",
+    "target_text": "nmap -p- 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports with service detection on 172.16.0.1",
+    "target_text": "nmap -p- -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Check which hosts are up on 192.168.1.1",
+    "target_text": "nmap -sn 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: OS detection with version scan on 192.168.100.0/24",
+    "target_text": "nmap -O -sV 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan of SSH on 172.16.0.0/24",
+    "target_text": "nmap -p 22 -sV 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Detect service versions on 172.16.0.0/24",
+    "target_text": "nmap -sV 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 172.16.0.0/24",
+    "target_text": "nmap -O 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 80 on 192.168.1.1",
+    "target_text": "nmap -p 80 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports on 172.16.0.0/24",
+    "target_text": "nmap -p- 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan Telnet with OS detection on 192.168.1.1",
+    "target_text": "nmap -p 23 -O 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Service fingerprinting on 192.168.0.0/24",
+    "target_text": "nmap -sV 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check service versions on 172.16.0.0/24",
+    "target_text": "nmap -sV 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check if port 23 is open on 172.16.0.0/24",
+    "target_text": "nmap -p 23 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check all 65535 ports on 172.16.0.1",
+    "target_text": "nmap -p- 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Check service versions on 192.168.0.0/24",
+    "target_text": "nmap -sV 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan SSH port on 172.16.0.1",
+    "target_text": "nmap -p 22 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Quick ping scan on 192.168.0.0/24",
+    "target_text": "nmap -sn 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 25 with version detection on 10.0.0.0/24",
+    "target_text": "nmap -p 25 -sV 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Detect operating system on 192.168.100.0/24",
+    "target_text": "nmap -O 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports on 10.0.0.1",
+    "target_text": "nmap -p- 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 10.0.0.0/24",
+    "target_text": "nmap -O 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 53 with version detection on 172.16.0.1",
+    "target_text": "nmap -p 53 -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Discover active hosts on 10.0.0.0/24",
+    "target_text": "nmap -sn 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan FTP with OS detection on 10.0.0.0/24",
+    "target_text": "nmap -p 21 -O 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Scan port 3389 on 172.16.0.1",
+    "target_text": "nmap -p 3389 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Host discovery on 10.10.10.0/24",
+    "target_text": "nmap -sn 10.10.10.0/24"
+  },
+  {
+    "input_text": "translate to nmap: OS detection with version scan on 192.168.0.0/24",
+    "target_text": "nmap -O -sV 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Version scan on 192.168.0.0/24",
+    "target_text": "nmap -sV 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Discover active hosts on 192.168.1.0/24",
+    "target_text": "nmap -sn 192.168.1.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Full scan with OS detection on 192.168.100.0/24",
+    "target_text": "nmap -p- -O 192.168.100.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Full port scan on 192.168.1.1",
+    "target_text": "nmap -p- 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Check which hosts are up on 172.16.0.0/24",
+    "target_text": "nmap -sn 172.16.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: OS detection with version scan on 172.16.0.1",
+    "target_text": "nmap -O -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Perform OS detection on 192.168.1.1",
+    "target_text": "nmap -O 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Detect operating system on 192.168.1.1",
+    "target_text": "nmap -O 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Test HTTPS on 10.0.0.1",
+    "target_text": "nmap -p 443 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Check what OS is running on 192.168.0.0/24",
+    "target_text": "nmap -O 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Check all 65535 ports on 192.168.1.1",
+    "target_text": "nmap -p- 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Discover active hosts on 172.16.0.1",
+    "target_text": "nmap -sn 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Scan all ports on 10.0.0.0/24",
+    "target_text": "nmap -p- 10.0.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Discover active hosts on 10.0.0.1",
+    "target_text": "nmap -sn 10.0.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Ping scan on 192.168.0.0/24",
+    "target_text": "nmap -sn 192.168.0.0/24"
+  },
+  {
+    "input_text": "translate to nmap: Detect service versions on 172.16.0.1",
+    "target_text": "nmap -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Host discovery on 172.16.0.1",
+    "target_text": "nmap -sn 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Check service versions on 192.168.1.1",
+    "target_text": "nmap -sV 192.168.1.1"
+  },
+  {
+    "input_text": "translate to nmap: Service fingerprinting on 172.16.0.1",
+    "target_text": "nmap -sV 172.16.0.1"
+  },
+  {
+    "input_text": "translate to nmap: Version scan on 192.168.1.0/24",
+    "target_text": "nmap -sV 192.168.1.0/24"
+  }
+]

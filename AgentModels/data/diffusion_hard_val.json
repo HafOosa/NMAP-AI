@@ -1,0 +1,682 @@
+[
+  {
+    "input_text": "generate advanced nmap command: Evade firewall on 192.168.100.0/24 using fragmentation",
+    "target_text": "nmap -f 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan UDP ports on 10.0.0.1 slowly",
+    "target_text": "nmap -sU -T2 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: IDS evasion scan of SSH on 10.0.0.1",
+    "target_text": "nmap -p 22 -sS -f -T1 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Silent scan of 10.0.0.0/24 with minimal footprint",
+    "target_text": "nmap -sS -T1 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Sneaky scan of 192.168.100.0/24 using paranoid timing",
+    "target_text": "nmap -sS -T1 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Mask identity when scanning 172.16.0.0/24",
+    "target_text": "nmap -S 10.0.0.99 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Firewall bypass scan on 192.168.1.0/24 with spoofing",
+    "target_text": "nmap -sS --spoof-mac 0 -D RND:10 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Complete stealth scan of 192.168.1.1 with fragmentation and decoys",
+    "target_text": "nmap -sS -f -D RND:10 -T1 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use spoofed MAC address on 192.168.1.1",
+    "target_text": "nmap -S 10.0.0.99 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Evade firewall on 192.168.1.0/24 using fragmentation",
+    "target_text": "nmap -f 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Decoy scan to confuse IDS on 192.168.100.0/24",
+    "target_text": "nmap -D RND:5 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Multi-layer evasion scan of 172.16.0.0/24",
+    "target_text": "nmap -sS -f -D RND:5 --randomize-hosts 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Covert scan with maximum stealth on 10.0.0.0/24",
+    "target_text": "nmap -sS -f -T0 --max-retries 1 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Sneaky scan of 10.0.0.0/24 using paranoid timing",
+    "target_text": "nmap -sS -T0 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Bypass IDS on 192.168.1.1 with fragmented packets",
+    "target_text": "nmap -f 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Fragment packets when scanning 192.168.1.1",
+    "target_text": "nmap -f 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Bypass IDS on 172.16.0.0/24 with fragmented packets",
+    "target_text": "nmap -f 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Advanced evasion scan on 192.168.1.0/24 bypassing IDS",
+    "target_text": "nmap -sS -f --data-length 25 -T0 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Stealthy scan of 172.16.0.0/24 with slow timing",
+    "target_text": "nmap -sS -T1 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Bypass IDS on 10.0.0.1 with fragmented packets",
+    "target_text": "nmap -f 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Silent scan of 10.0.0.1 with minimal footprint",
+    "target_text": "nmap -sS -T0 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use packet fragmentation on 10.0.0.0/24",
+    "target_text": "nmap -f 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: IDS evasion scan of RDP on 192.168.1.0/24",
+    "target_text": "nmap -p 3389 -sS -f -T1 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Hide source IP while probing 10.0.0.1",
+    "target_text": "nmap --spoof-mac 0 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Firewall bypass scan on 172.16.0.0/24 with spoofing",
+    "target_text": "nmap -sS --spoof-mac 0 -D RND:10 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Fragmented scan of 192.168.1.1 to bypass firewall",
+    "target_text": "nmap -f 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: UDP scan on 192.168.1.0/24 with stealth",
+    "target_text": "nmap -sU -T1 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Evade firewall on 192.168.1.0/24 using fragmentation",
+    "target_text": "nmap -f 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Mask real IP when probing 192.168.1.1",
+    "target_text": "nmap -D RND:10 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Evade firewall on 192.168.1.1 using fragmentation",
+    "target_text": "nmap -f 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan UDP ports on 172.16.0.0/24 slowly",
+    "target_text": "nmap -sU -T0 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Hide scan origin on 10.0.0.0/24 with decoys",
+    "target_text": "nmap -D RND:10 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Low-profile scan on 192.168.1.1 evading IDS",
+    "target_text": "nmap -sS -T0 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan 192.168.100.0/24 using decoy hosts",
+    "target_text": "nmap -D RND:5 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use multiple decoys when scanning 10.0.0.1",
+    "target_text": "nmap -D ME 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Stealthy scan of 192.168.1.0/24 with slow timing",
+    "target_text": "nmap -sS -T2 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Multi-layer evasion scan of 172.16.0.0/24",
+    "target_text": "nmap -sS -f -D RND:5 --randomize-hosts 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Mask identity when scanning 192.168.1.0/24",
+    "target_text": "nmap --spoof-mac 0 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Covert scan with maximum stealth on 10.0.0.0/24",
+    "target_text": "nmap -sS -f -T0 --max-retries 1 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Mask real IP when probing 172.16.0.0/24",
+    "target_text": "nmap -D ME 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Stealthy scan of 192.168.1.1 with slow timing",
+    "target_text": "nmap -sS -T2 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Hide source IP while probing 172.16.0.0/24",
+    "target_text": "nmap -S 10.0.0.99 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: UDP scan with evasion on 10.0.0.0/24",
+    "target_text": "nmap -sU -T2 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: IDS evasion scan of HTTPS on 192.168.1.0/24",
+    "target_text": "nmap -p 443 -sS -f -T1 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Decoy scan to confuse IDS on 192.168.1.1",
+    "target_text": "nmap -D RND:10 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use packet fragmentation on 10.0.0.0/24",
+    "target_text": "nmap -f 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Low-profile scan on 10.0.0.0/24 evading IDS",
+    "target_text": "nmap -sS -T2 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan UDP ports on 10.0.0.1 slowly",
+    "target_text": "nmap -sU -T1 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Complete stealth scan of 172.16.0.0/24 with fragmentation and decoys",
+    "target_text": "nmap -sS -f -D RND:10 -T1 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Hide scan origin on 172.16.0.0/24 with decoys",
+    "target_text": "nmap -D ME 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Hide scan origin on 192.168.1.0/24 with decoys",
+    "target_text": "nmap -D ME 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Bypass IDS on 10.0.0.0/24 with fragmented packets",
+    "target_text": "nmap -f 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Evade firewall on 172.16.0.0/24 using fragmentation",
+    "target_text": "nmap -f 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Hide scan origin on 192.168.1.0/24 with decoys",
+    "target_text": "nmap -D RND:5 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Mask identity when scanning 192.168.1.1",
+    "target_text": "nmap --spoof-mac 0 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Stealthy scan of 192.168.1.1 with slow timing",
+    "target_text": "nmap -sS -T1 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Decoy scan to confuse IDS on 192.168.1.0/24",
+    "target_text": "nmap -D RND:10 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan UDP ports on 10.0.0.1 slowly",
+    "target_text": "nmap -sU -T0 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Evade firewall on 192.168.100.0/24 using fragmentation",
+    "target_text": "nmap -f 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Mask identity when scanning 192.168.1.0/24",
+    "target_text": "nmap -S 10.0.0.99 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: UDP scan with evasion on 172.16.0.0/24",
+    "target_text": "nmap -sU -T2 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Mask identity when scanning 10.0.0.1",
+    "target_text": "nmap --spoof-mac 0 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Complete stealth scan of 192.168.1.1 with fragmentation and decoys",
+    "target_text": "nmap -sS -f -D RND:10 -T1 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use multiple decoys when scanning 192.168.1.1",
+    "target_text": "nmap -D ME 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Evade firewall on 192.168.1.1 using fragmentation",
+    "target_text": "nmap -f 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan UDP ports on 192.168.100.0/24 slowly",
+    "target_text": "nmap -sU -T2 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Complete stealth scan of 172.16.0.0/24 with fragmentation and decoys",
+    "target_text": "nmap -sS -f -D RND:10 -T1 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Covert UDP scan of 172.16.0.0/24",
+    "target_text": "nmap -sU -T1 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Fragment packets when scanning 10.0.0.0/24",
+    "target_text": "nmap -f 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Advanced evasion scan on 172.16.0.0/24 bypassing IDS",
+    "target_text": "nmap -sS -f --data-length 25 -T0 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Decoy scan to confuse IDS on 172.16.0.0/24",
+    "target_text": "nmap -D ME 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Advanced evasion scan on 192.168.1.1 bypassing IDS",
+    "target_text": "nmap -sS -f --data-length 25 -T0 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: UDP scan with evasion on 10.0.0.1",
+    "target_text": "nmap -sU -T2 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Complete stealth scan of 172.16.0.0/24 with fragmentation and decoys",
+    "target_text": "nmap -sS -f -D RND:10 -T1 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Advanced evasion scan on 192.168.1.1 bypassing IDS",
+    "target_text": "nmap -sS -f --data-length 25 -T0 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use multiple decoys when scanning 10.0.0.1",
+    "target_text": "nmap -D RND:10 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Decoy scan to confuse IDS on 192.168.1.0/24",
+    "target_text": "nmap -D RND:5 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Covert UDP scan of 172.16.0.0/24",
+    "target_text": "nmap -sU -T0 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use spoofed MAC address on 172.16.0.0/24",
+    "target_text": "nmap --spoof-mac 0 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Stealthy scan of 192.168.1.0/24 with slow timing",
+    "target_text": "nmap -sS -T2 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use multiple decoys when scanning 192.168.100.0/24",
+    "target_text": "nmap -D RND:10 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Sneaky scan of 192.168.100.0/24 using paranoid timing",
+    "target_text": "nmap -sS -T1 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Fragmented scan of 10.0.0.1 to bypass firewall",
+    "target_text": "nmap -f 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Multi-layer evasion scan of 172.16.0.0/24",
+    "target_text": "nmap -sS -f -D RND:5 --randomize-hosts 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Hide scan origin on 10.0.0.1 with decoys",
+    "target_text": "nmap -D RND:10 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Advanced evasion scan on 192.168.100.0/24 bypassing IDS",
+    "target_text": "nmap -sS -f --data-length 25 -T0 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: UDP scan with evasion on 10.0.0.1",
+    "target_text": "nmap -sU -T1 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use packet fragmentation on 10.0.0.0/24",
+    "target_text": "nmap -f 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Mask real IP when probing 10.0.0.1",
+    "target_text": "nmap -D RND:5 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Covert UDP scan of 10.0.0.0/24",
+    "target_text": "nmap -sU -T1 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use multiple decoys when scanning 10.0.0.1",
+    "target_text": "nmap -D ME 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan UDP ports on 10.0.0.0/24 slowly",
+    "target_text": "nmap -sU -T2 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use multiple decoys when scanning 192.168.1.1",
+    "target_text": "nmap -D RND:5 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Covert UDP scan of 192.168.100.0/24",
+    "target_text": "nmap -sU -T0 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan 10.0.0.0/24 using decoy hosts",
+    "target_text": "nmap -D RND:5 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Hide source IP while probing 192.168.100.0/24",
+    "target_text": "nmap --spoof-mac 0 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Stealthy scan of 192.168.100.0/24 with slow timing",
+    "target_text": "nmap -sS -T1 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Multi-layer evasion scan of 10.0.0.0/24",
+    "target_text": "nmap -sS -f -D RND:5 --randomize-hosts 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Mask identity when scanning 192.168.1.1",
+    "target_text": "nmap -S 10.0.0.99 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Multi-layer evasion scan of 10.0.0.1",
+    "target_text": "nmap -sS -f -D RND:5 --randomize-hosts 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Fragment packets when scanning 172.16.0.0/24",
+    "target_text": "nmap -f 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Sneaky scan of 192.168.1.0/24 using paranoid timing",
+    "target_text": "nmap -sS -T1 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Covert scan on 172.16.0.0/24 to avoid detection",
+    "target_text": "nmap -sS -T2 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Complete stealth scan of 192.168.1.1 with fragmentation and decoys",
+    "target_text": "nmap -sS -f -D RND:10 -T1 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use spoofed MAC address on 192.168.1.0/24",
+    "target_text": "nmap --spoof-mac 0 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use multiple decoys when scanning 10.0.0.1",
+    "target_text": "nmap -D RND:5 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Bypass IDS on 172.16.0.0/24 with fragmented packets",
+    "target_text": "nmap -f 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan 192.168.100.0/24 using decoy hosts",
+    "target_text": "nmap -D ME 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Silent scan of 172.16.0.0/24 with minimal footprint",
+    "target_text": "nmap -sS -T0 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use packet fragmentation on 192.168.100.0/24",
+    "target_text": "nmap -f 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Stealthy scan of 192.168.1.0/24 with slow timing",
+    "target_text": "nmap -sS -T0 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Decoy scan to confuse IDS on 10.0.0.0/24",
+    "target_text": "nmap -D ME 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Multi-layer evasion scan of 192.168.100.0/24",
+    "target_text": "nmap -sS -f -D RND:5 --randomize-hosts 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Mask identity when scanning 10.0.0.1",
+    "target_text": "nmap -S 10.0.0.99 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Silent scan of 10.0.0.1 with minimal footprint",
+    "target_text": "nmap -sS -T0 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: IDS evasion scan of HTTP on 192.168.1.1",
+    "target_text": "nmap -p 80 -sS -f -T1 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Firewall bypass scan on 192.168.1.1 with spoofing",
+    "target_text": "nmap -sS --spoof-mac 0 -D RND:10 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Multi-layer evasion scan of 10.0.0.1",
+    "target_text": "nmap -sS -f -D RND:5 --randomize-hosts 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Fragmented scan of 172.16.0.0/24 to bypass firewall",
+    "target_text": "nmap -f 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Covert scan on 192.168.1.1 to avoid detection",
+    "target_text": "nmap -sS -T1 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Decoy scan to confuse IDS on 192.168.1.1",
+    "target_text": "nmap -D ME 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use multiple decoys when scanning 192.168.1.0/24",
+    "target_text": "nmap -D ME 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Low-profile scan on 10.0.0.0/24 evading IDS",
+    "target_text": "nmap -sS -T1 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Complete stealth scan of 10.0.0.1 with fragmentation and decoys",
+    "target_text": "nmap -sS -f -D RND:10 -T1 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan 192.168.1.0/24 using decoy hosts",
+    "target_text": "nmap -D ME 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Mask real IP when probing 10.0.0.0/24",
+    "target_text": "nmap -D RND:10 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan UDP ports on 192.168.1.0/24 slowly",
+    "target_text": "nmap -sU -T1 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan 192.168.100.0/24 using decoy hosts",
+    "target_text": "nmap -D RND:10 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: IDS evasion scan of RDP on 192.168.1.1",
+    "target_text": "nmap -p 3389 -sS -f -T1 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use multiple decoys when scanning 10.0.0.0/24",
+    "target_text": "nmap -D ME 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Complete stealth scan of 192.168.1.1 with fragmentation and decoys",
+    "target_text": "nmap -sS -f -D RND:10 -T1 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Mask real IP when probing 10.0.0.1",
+    "target_text": "nmap -D ME 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Hide scan origin on 172.16.0.0/24 with decoys",
+    "target_text": "nmap -D ME 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Hide source IP while probing 192.168.1.1",
+    "target_text": "nmap --spoof-mac 0 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Spoof source address when scanning 10.0.0.1",
+    "target_text": "nmap -S 10.0.0.99 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: UDP scan with evasion on 10.0.0.0/24",
+    "target_text": "nmap -sU -T0 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Decoy scan to confuse IDS on 192.168.1.1",
+    "target_text": "nmap -D RND:10 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Hide scan origin on 10.0.0.1 with decoys",
+    "target_text": "nmap -D ME 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Covert scan on 192.168.1.0/24 to avoid detection",
+    "target_text": "nmap -sS -T2 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use multiple decoys when scanning 192.168.1.1",
+    "target_text": "nmap -D RND:10 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: IDS evasion scan of MySQL on 192.168.100.0/24",
+    "target_text": "nmap -p 3306 -sS -f -T1 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: UDP scan with evasion on 172.16.0.0/24",
+    "target_text": "nmap -sU -T2 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: UDP scan with evasion on 172.16.0.0/24",
+    "target_text": "nmap -sU -T0 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Spoof source address when scanning 192.168.100.0/24",
+    "target_text": "nmap -S 10.0.0.99 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Hide scan origin on 10.0.0.0/24 with decoys",
+    "target_text": "nmap -D ME 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: IDS evasion scan of HTTP on 172.16.0.0/24",
+    "target_text": "nmap -p 80 -sS -f -T1 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan 10.0.0.1 using decoy hosts",
+    "target_text": "nmap -D RND:10 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: UDP scan with evasion on 192.168.1.0/24",
+    "target_text": "nmap -sU -T2 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Use packet fragmentation on 192.168.100.0/24",
+    "target_text": "nmap -f 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Fragment packets when scanning 172.16.0.0/24",
+    "target_text": "nmap -f 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Fragment packets when scanning 192.168.100.0/24",
+    "target_text": "nmap -f 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Covert scan on 192.168.1.1 to avoid detection",
+    "target_text": "nmap -sS -T1 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Fragment packets when scanning 192.168.1.1",
+    "target_text": "nmap -f 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Sneaky scan of 172.16.0.0/24 using paranoid timing",
+    "target_text": "nmap -sS -T1 172.16.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan 10.0.0.1 using decoy hosts",
+    "target_text": "nmap -D RND:10 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Mask real IP when probing 10.0.0.1",
+    "target_text": "nmap -D ME 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Hide source IP while probing 10.0.0.0/24",
+    "target_text": "nmap -S 10.0.0.99 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Covert scan on 192.168.100.0/24 to avoid detection",
+    "target_text": "nmap -sS -T1 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Complete stealth scan of 192.168.100.0/24 with fragmentation and decoys",
+    "target_text": "nmap -sS -f -D RND:10 -T1 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Complete stealth scan of 192.168.100.0/24 with fragmentation and decoys",
+    "target_text": "nmap -sS -f -D RND:10 -T1 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Low-profile scan on 192.168.1.0/24 evading IDS",
+    "target_text": "nmap -sS -T0 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Covert scan on 192.168.1.0/24 to avoid detection",
+    "target_text": "nmap -sS -T2 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Fragmented scan of 192.168.100.0/24 to bypass firewall",
+    "target_text": "nmap -f 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Fragmented scan of 192.168.1.1 to bypass firewall",
+    "target_text": "nmap -f 192.168.1.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Advanced evasion scan on 192.168.100.0/24 bypassing IDS",
+    "target_text": "nmap -sS -f --data-length 25 -T0 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Sneaky scan of 10.0.0.0/24 using paranoid timing",
+    "target_text": "nmap -sS -T1 10.0.0.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Fragment packets when scanning 192.168.100.0/24",
+    "target_text": "nmap -f 192.168.100.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan 10.0.0.1 using decoy hosts",
+    "target_text": "nmap -D RND:10 10.0.0.1"
+  },
+  {
+    "input_text": "generate advanced nmap command: Advanced evasion scan on 192.168.1.0/24 bypassing IDS",
+    "target_text": "nmap -sS -f --data-length 25 -T0 192.168.1.0/24"
+  },
+  {
+    "input_text": "generate advanced nmap command: Scan UDP ports on 10.0.0.0/24 slowly",
+    "target_text": "nmap -sU -T1 10.0.0.0/24"
+  }
+]
