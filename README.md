@@ -651,8 +651,8 @@ python -m spacy download fr_core_news_sm
 python main_test.py
 ```
 
-![Module Architecture](pictures/4/image1.png)  
-![Module Architecture](pictures/4/image2.png)
+![Module Architecture](pictures/4/image1.jpeg)  
+![Module Architecture](pictures/4/image2.jpeg)
 
 ---
 
