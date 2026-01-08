@@ -1,4 +1,4 @@
-# NMAP-AI: AI-Based Nmap Command Generator
+<img width="625" height="570" alt="image" src="https://github.com/user-attachments/assets/438862e3-0460-46a8-964f-e24f7cb5e680" /># NMAP-AI: AI-Based Nmap Command Generator
 
 ## Table of Contents
 
@@ -1036,106 +1036,18 @@ Input: "Scan port 22 sur 192.168.1.1"
 
 **Test 2 : Requête MEDIUM**
 ```
-Input: "Détection de services HTTP et SSH sur réseau local"
-Classification: MEDIUM (confidence: 0.89)
-Generated: nmap -sV -p 22,80,443 192.168.1.0/24
-Validation: PASSED (Score: 88/100, Grade: B+)
-Corrections: Aucune
+
+![medium3](pictures/2/medium3.png)
+
+
 ```
 
 **Test 3 : Requête HARD**
 ```
-Input: "Scan SYN furtif avec fragmentation et decoy sur 10.0.0.0/24"
-Classification: HARD (confidence: 0.95)
-Generated: nmap -sS -f -D RND:10 -p- 10.0.0.0/24
-Validation: PASSED (Score: 82/100, Grade: B)
-Corrections: Ajout de --max-rate pour performance
+![hard3](pictures/2/hard3.png)
+
+
 ```
-
----
-
-## Déploiement
-
-### Déploiement Local (Docker)
-
-**1. Build des images**
-```bash
-docker-compose build
-```
-
-**2. Lancement des services**
-```bash
-docker-compose up -d
-```
-
-**Services disponibles**
-- Frontend Flask : http://localhost:5000
-- API Classification : http://localhost:8002
-- MCP Server : http://localhost:8003
-- Neo4j Browser : http://localhost:7474
-
-### Déploiement Production
-
-**Prérequis**
-- Serveur Ubuntu 20.04+
-- Docker & Docker Compose
-- Nginx (reverse proxy)
-- Certificat SSL
-
-**Configuration Nginx**
-```nginx
-server {
-    listen 80;
-    server_name nmap-ai.example.com;
-    return 301 https://$server_name$request_uri;
-}
-
-server {
-    listen 443 ssl;
-    server_name nmap-ai.example.com;
-
-    ssl_certificate /etc/ssl/certs/nmap-ai.crt;
-    ssl_certificate_key /etc/ssl/private/nmap-ai.key;
-
-    location / {
-        proxy_pass http://localhost:5000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-    }
-
-    location /api/ {
-        proxy_pass http://localhost:8002/;
-    }
-}
-```
-
-**Variables d'environnement Production**
-```env
-FLASK_ENV=production
-NEO4J_URI=bolt://neo4j-prod:7687
-NEO4J_USER=admin
-NEO4J_PASSWORD=***
-API_KEY=***
-LOG_LEVEL=INFO
-```
-
-### Monitoring
-
-**Logs**
-```bash
-# Logs Frontend
-docker logs -f nmap-ai-frontend
-
-# Logs API
-docker logs -f nmap-ai-api
-
-# Logs MCP
-docker logs -f nmap-ai-mcp
-```
-
-**Métriques**
-- Prometheus : http://localhost:9090
-- Grafana : http://localhost:3000
 
 ---
 
@@ -1144,7 +1056,7 @@ docker logs -f nmap-ai-mcp
 | Nom | Rôle | Contact |
 |-----|------|---------|
 | **Imane Allioui** | Database Architect & RAG | imane.allioui@example.com |
-| **Chaimae Ababri** | ML Engineer & Fine-tuning | chaimae.ababri@example.com |
+| **Chaimae Ababri** | ML Engineer & Fine-tuning | chaimaeababri14@gmail.com |
 | **Rami Hala** | Classification & Routing | rami.hala@example.com |
 | **Habib Samia** | RAG Improvement & Self-Correction | habib.samia@example.com |
 | **El Guallaf Hafssa** | Validation & Frontend | hafssa.elguallaf@example.com |
