@@ -1,4 +1,3 @@
-<img width="625" height="570" alt="image" src="https://github.com/user-attachments/assets/438862e3-0460-46a8-964f-e24f7cb5e680" /># NMAP-AI: AI-Based Nmap Command Generator
 
 ## Table of Contents
 
@@ -165,10 +164,10 @@ User queries are automatically classified into three complexity levels (**EASY**
 - **Main labels**: Option, ScanType, Port, Script, Service, Protocol
 
 **Visualizations**
-- ![Total Nodes](pictures/neo4j_total_nodes.png)
-- ![Labels Distribution](pictures/neo4j_labels.png)
-- ![Relationships](pictures/neo4j_relationships.png)
-- ![Graph View](pictures/neo4j_graph_view.png)
+- ![Total Nodes](pictures/1/neo4j_total_nodes.png)
+- ![Labels Distribution](pictures/1/neo4j_labels.png)
+- ![Relationships](pictures/1/neo4j_relationships.png)
+- ![Graph View](pictures/1/neo4j_graph_view.png)
 
 #### 🧠 Comprehension Agent – NMAP Relevance Checking
 
@@ -361,8 +360,6 @@ This enables the user to obtain the exact Nmap command needed to perform the sca
 
 ### Personne 3 : Rami Hala
 
-                               Person 3 Module — Nmap Complexity Classification
-
 📌 Project Context
 
 This module represents the work of Person 3 in the collaborative NMAP-AI project.
@@ -456,7 +453,7 @@ The trained model is saved as:
 
 models/complexity_classifier.pkl
 
-![Training Accuracy](screenshots/training_accuracy.png)
+![Training Accuracy](pictures/3/training_accuracy.png)
 
 4️⃣ Post-Prediction Business Rules
 
@@ -478,7 +475,7 @@ Example:
 Enter Nmap query > Stealth scan with fragmentation and decoy
 → Detected complexity: HARD
 
-![Classifier Test](screenshots/classifier_test.png)
+![Classifier Test](pictures/3/classifier_test.png)
 
 6️⃣ Intelligent Router
 
@@ -489,7 +486,7 @@ The router.py module provides:
 ⦁ Human-readable explanation
 ⦁ Clear routing recommendation
 
-![Router Output](screenshots/router_output.png)
+![Router Output](pictures/3/router_output.png)
 
 🌐 REST API — FastAPI (Production Ready)
 
@@ -556,8 +553,8 @@ Interactive Swagger UI:
 
 http://localhost:8002/docs
 
-![FastAPI Swagger](screenshots/api_swagger.png)
-![API Prediction](screenshots/api_predict.png)
+![FastAPI Swagger](pictures/3/api_swagger.png)
+![API Prediction](pictures/3/api_predict.png)
 
 📊 Results and Validation
 
