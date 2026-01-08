@@ -244,95 +244,127 @@ python server.py
 
 ### Personne 2 : Chaimae Ababri
 
-**Objectives**:
+**Role**: Fine-tuning and AI Model Management
+
+#### Main Responsibilities
+
+- **Dataset Preparation and Enrichment**: Creating and augmenting datasets for **EASY**, **MEDIUM**, and **HARD** queries, including services like SSH, FTP, HTTP, etc.
+- **Fine-tuning Phi-4 and Diffusion Models**: Optimizing models for **MEDIUM** and **HARD** queries.
+- **Inference Script Creation**: Automating the generation of Nmap commands from natural language queries.
+- **Model Evaluation**: Measuring the performance of models in terms of accuracy and validity of generated commands.
 
 #### Detailed Steps
 
-##### 1. Dataset Preparation
+Certainly! Below is the refined explanation for the steps mentioned earlier, formatted according to the README structure, including placeholders where you can add the relevant screenshots or visual aids. This will give you a comprehensive and well-structured section for your README:
 
-**Dataset Enrichment**
-- Creation of datasets for EASY, MEDIUM, and HARD queries
-- Integration of services (SSH, FTP, HTTP, etc.)
-- Service-port association
+---
 
-**Query Paraphrasing**
-- Augmenting the dataset with paraphrases
-- Covering syntax and style variations
+##### 2. **Dataset Preparation**
 
-**Data Example**
+###### **Dataset Enrichment**
+
+The first step in preparing the model is enriching the dataset. We create datasets for three different complexity levels of queries: **MEDIUM**, and **HARD**. Each query is associated with specific services (such as **SSH**, **FTP**, **HTTP**, etc.) and their corresponding ports.
+
+* **MEDIUM queries** typically involve more complex tasks, like scanning multiple ports or detecting service versions.
+* **HARD queries** are more advanced and involve complex scanning techniques, like stealth or evasion scans.
+
+Additionally, each service is associated with the relevant ports, which helps the model understand the relationship between services and their corresponding ports.
+
+###### **Query Paraphrasing**
+
+To improve the model's flexibility and robustness, we augment the dataset by paraphrasing queries. This increases the variety in phrasing and allows the model to handle different types of queries, even when phrased differently by the user. For example:
+
+* The query "Scan port 22 on 192.168.1.0/24" can be paraphrased into "Check port 22 on 192.168.1.0/24" or "Port 22 scan for 192.168.1.0/24."
+
+By including paraphrased queries in the training dataset, we allow the model to recognize and correctly interpret a broader range of input formats.
+
+###### **Data Example**
+
+Example data for training might look like this:
+
 ```json
 {
   "instruction": "Scan port 22 on 192.168.1.0/24",
   "input": "",
   "output": "nmap -p 22 192.168.1.0/24"
 }
-
-
-##### 2. Model Fine-Tuning
-
-**Phi-4 Model (MEDIUM Queries)**
-```python
-from transformers import T5ForConditionalGeneration, T5Tokenizer
-from transformers import Trainer, TrainingArguments
-from datasets import load_dataset
-
-model = T5ForConditionalGeneration.from_pretrained("t5-base")
-tokenizer = T5Tokenizer.from_pretrained("t5-base")
-
-# Load and prepare the dataset
-train_dataset = load_dataset("data/t5_balanced_train.json")
-val_dataset = load_dataset("data/t5_balanced_val.json")
-
-training_args = TrainingArguments(
-    output_dir="./results",
-    per_device_train_batch_size=16,
-    per_device_eval_batch_size=16,
-    num_train_epochs=3,
-    logging_dir='./logs',
-)
-
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=train_dataset,
-    eval_dataset=val_dataset,
-    tokenizer=tokenizer,
-)
-trainer.train()
 ```
 
-**Diffusion Model (HARD Queries)**
-```python
-from transformers import T5ForConditionalGeneration, T5Tokenizer
-from peft import PeftModel
-import torch
+This data is used to train the model to correctly map natural language queries to Nmap commands.
 
-model = T5ForConditionalGeneration.from_pretrained("t5-base")
-model = model.to("cuda" if torch.cuda.is_available() else "cpu")
-tokenizer = T5Tokenizer.from_pretrained("t5-base")
+---
 
-peft_model = PeftModel.from_pretrained(model, "path/to/hard_model")
+##### 3. **Model Fine-Tuning**
 
-instruction = "Scan with evasion using decoys on 192.168.1.0/24"
-inputs = tokenizer(instruction, return_tensors="pt")
-outputs = peft_model.generate(**inputs)
+###### **Phi-4 Model (MEDIUM Queries)**
 
-generated_command = tokenizer.decode(outputs[0], skip_special_tokens=True)
-print(f"Generated Command: {generated_command}")
+After preparing the dataset, we fine-tune the **Phi-4 model** on the **MEDIUM queries** dataset. Fine-tuning involves adapting a pre-trained model to a specific task by continuing training on a smaller, task-specific dataset. The **Phi-4 model**, a variant of the T5 architecture, is fine-tuned to process and generate Nmap commands for queries that involve scanning multiple ports or detecting services.
 
+* For example, a **MEDIUM query** could involve detecting service versions on a specific network range, such as:
 
-##### 3. Model Evaluation
+  * "Detect OS version on 10.0.0.1" would be transformed into `nmap -O -sV 10.0.0.1`.
 
-**Results**
-- MEDIUM Queries: **85-92% precision**
-- HARD Queries: **70-80% precision**
+###### **Diffusion Model (HARD Queries)**
 
-##### 4. Inference Scripts
+For more complex **HARD queries**, we fine-tune the **Diffusion model**. These queries often involve advanced scanning techniques such as **stealth scans**, **fragmentation**, and **decoy usage**. The **Diffusion model** is specifically trained to generate these complex Nmap commands.
 
-```python
-instruction = "Scan all ports on 192.168.1.0/24"
-generated_command = model.generate(instruction)
-print(f"Generated Command: {generated_command}")
+* An example of a **HARD query** might be:
+
+  * "Scan with evasion using decoys on 192.168.1.0/24," which would be transformed into `nmap -sS -D RND:10 192.168.1.0/24`.
+
+This model is fine-tuned on a dataset that includes these advanced scanning techniques to handle queries that require the generation of stealthy or evasive Nmap commands.
+
+---
+
+##### 4. **Model Evaluation**
+
+After fine-tuning, the models are evaluated using a separate **validation dataset** to assess their performance in generating correct Nmap commands for the different query complexities.
+
+###### **Results**
+
+The fine-tuned models are evaluated on precision and recall metrics:
+
+* **MEDIUM Queries**: Achieved **85% to 92% precision**, meaning the model correctly generates the expected Nmap commands most of the time for medium-complexity queries.
+* **HARD Queries**: Achieved **70% to 80% precision**, indicating that while the model can handle complex queries, its performance is somewhat lower due to the difficulty of generating commands for evasive scans and other advanced techniques.
+
+---
+
+##### 5. **Inference Scripts**
+
+Once the model is trained and evaluated, it can be used to generate Nmap commands from unseen, real-world queries. During **inference**, a query in natural language (e.g., "Scan all ports on 192.168.1.0/24") is input into the model, and the model generates the corresponding Nmap command (e.g., `nmap -p- 192.168.1.0/24`).
+
+This process allows users to quickly generate accurate and contextually appropriate Nmap commands from simple or complex queries.
+
+###### **Example of an Inference**
+
+If a user inputs the query "Scan all ports on 192.168.1.0/24", the model would output the command:
+
+```
+nmap -p- 192.168.1.0/24
+```
+
+This enables the user to obtain the exact Nmap command needed to perform the scan on the target network.
+
+---
+
+##### **Suggested Captures**
+
+You can include the following types of screenshots or visual aids to enhance the explanation:
+
+1. **Model Training Overview**:
+
+   * Screenshot of the model training process with **TensorBoard** or similar tools, showing the training and validation loss curves.
+
+2. **Model Evaluation Metrics**:
+
+   * A table or graph showing the precision, recall, and F1-score for the **MEDIUM** and **HARD** query models.
+
+3. **Command Generation Examples**:
+
+   * A screenshot showing the inference process in action, such as:
+
+     * A user inputting a query ("Scan all ports on 192.168.1.0/24") and receiving the generated command (`nmap -p- 192.168.1.0/24`).
+
 
 ---
 
