@@ -731,7 +731,7 @@ Responsible for the complete validation layer, the reliability of the infrastruc
 - ✅ Tests End-to-End
 - ✅ Documentation Complète
 
-![Validation System](pictures/5/image.png)
+![Validation System](pictures/5/image.jpeg)
 
 🎉 **Système de validation et frontend Flask entièrement terminés, testés et prêts pour déploiement en production et intégration d'équipe !**
 
@@ -1022,29 +1022,20 @@ NMAP-AI/
 ### Exemples de Test
 
 **Test 1 : Requête EASY**
-```
+
 Input: "Scan port 22 sur 192.168.1.1"
 ![easy](pictures/2/easy.png)
 ![easy2](pictures/2/easy2.png)
 
 
 
-```
-
 **Test 2 : Requête MEDIUM**
-```
 
 ![medium3](pictures/2/medium3.png)
 
 
-```
-
 **Test 3 : Requête HARD**
-```
 ![hard3](pictures/2/hard3.png)
-
-
-```
 
 ---
 
@@ -1052,11 +1043,11 @@ Input: "Scan port 22 sur 192.168.1.1"
 
 | Nom | Rôle | Contact |
 |-----|------|---------|
-| **Imane Allioui** | Database Architect & RAG | imane.allioui@example.com |
+| **Imane Allioui** | Database Architect & RAG | alliouiimane7@gmail.com |
 | **Chaimae Ababri** | ML Engineer & Fine-tuning | chaimaeababri14@gmail.com |
-| **Rami Hala** | Classification & Routing | rami.hala@example.com |
-| **Habib Samia** | RAG Improvement & Self-Correction | habib.samia@example.com |
-| **El Guallaf Hafssa** | Validation & Frontend | hafssa.elguallaf@example.com |
+| **Rami Hala** | Classification & Routing |  |
+| **Habib Samia** | RAG Improvement & Self-Correction |  |
+| **El Guallaf Hafssa** | Validation & Frontend |  |
 
 
 ---
