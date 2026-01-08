@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NMAP Validator | Cybersecurity Command Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #00d4ff;
+            --danger: #ff0055;
+            --warning: #ffaa00;
+            --dark: #0a0e1a;
+            --darker: #050810;
+            --card-bg: rgba(15, 20, 35, 0.8);
+            --border: rgba(0, 255, 136, 0.2);
+            --glow: rgba(0, 255, 136, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--darker);
+            color: var(--primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated background with scanlines and grid */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+        
+        .scanline {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: scan 4s linear infinite;
+            opacity: 0.5;
+        }
+        
+        @keyframes scan {
+            0% { top: -2px; }
+            100% { top: 100%; }
+        }
+        
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: float 10s infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            50% { transform: translateY(-100vh) translateX(50px); }
+            90% { opacity: 0.6; }
+            100% { opacity: 0; }
+        }
+        
+        /* Main container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Hero header */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px var(--glow);
+            animation: glowPulse 3s ease-in-out infinite;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { filter: drop-shadow(0 0 20px var(--glow)); }
+            50% { filter: drop-shadow(0 0 40px var(--glow)); }
+        }
+        
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            opacity: 0.8;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+        
+        .hero .tagline {
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Card styling */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 32px var(--glow), inset 0 0 20px rgba(0, 255, 136, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card-title::before {
+            content: '▸';
+            color: var(--secondary);
+            animation: blink 1.5s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+        
+        /* Input styling */
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .terminal-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .terminal-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--glow), inset 0 0 10px rgba(0, 255, 136, 0.1);
+        }
+        
+        .terminal-input::placeholder {
+            color: rgba(0, 255, 136, 0.4);
+        }
+        
+        /* Button styling */
+        .btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 8px;
+            color: var(--dark);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+        
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--glow);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Loading animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .loading.active {
+            display: block;
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Results display */
+        .results {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .results.show {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .score-display {
+            text-align: center;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--border);
+            position: relative;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .score-circle.grade-a { border-color: var(--primary); box-shadow: 0 0 30px var(--glow); }
+        .score-circle.grade-b { border-color: var(--secondary); box-shadow: 0 0 30px rgba(0, 212, 255, 0.5); }
+        .score-circle.grade-c { border-color: var(--warning); box-shadow: 0 0 30px rgba(255, 170, 0, 0.5); }
+        .score-circle.grade-d, .score-circle.grade-f { border-color: var(--danger); box-shadow: 0 0 30px rgba(255, 0, 85, 0.5); }
+        
+        .score-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+        }
+        
+        .score-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+        
+        .grade-badge {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+        }
+        
+        /* Status indicators */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-indicator.valid {
+            background: rgba(0, 255, 136, 0.2);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .status-indicator.invalid {
+            background: rgba(255, 0, 85, 0.2);
+            border: 2px solid var(--danger);
+            color: var(--danger);
+        }
+        
+        .status-indicator::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        /* Issue lists */
+        .issue-list {
+            margin-top: 2rem;
+        }
+        
+        .issue-section {
+            margin-bottom: 2rem;
+        }
+        
+        .issue-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .issue-section.errors h3 { color: var(--danger); }
+        .issue-section.warnings h3 { color: var(--warning); }
+        .issue-section.suggestions h3 { color: var(--secondary); }
+        
+        .issue-item {
+            padding: 0.8rem 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+            animation: slideIn 0.3s ease-out backwards;
+        }
+        
+        .issue-item.error { border-color: var(--danger); }
+        .issue-item.warning { border-color: var(--warning); }
+        .issue-item.suggestion { border-color: var(--secondary); }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        /* Breakdown table */
+        .breakdown {
+            margin-top: 2rem;
+        }
+        
+        .breakdown-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 2fr;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .breakdown-row:nth-child(2) { border-color: var(--secondary); animation-delay: 0.1s; }
+        .breakdown-row:nth-child(3) { border-color: var(--warning); animation-delay: 0.2s; }
+        
+        .breakdown-item {
+            text-align: center;
+        }
+        
+        .breakdown-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+        
+        .breakdown-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        /* Progress bar */
+        .progress-bar {
+            height: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            transition: width 1s ease;
+            animation: shimmerProgress 2s infinite;
+        }
+        
+        @keyframes shimmerProgress {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .tab {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'JetBrains Mono', monospace;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .tab.active {
+            color: var(--primary);
+        }
+        
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--glow);
+        }
+        
+        .tab:hover {
+            color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer a:hover {
+            text-shadow: 0 0 10px var(--glow);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .result-header {
+                flex-direction: column;
+            }
+            
+            .breakdown-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                overflow-x: auto;
+            }
+        }
+        
+        /* Glitch effect on hover */
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch:hover::before,
+        .glitch:hover::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch:hover::before {
+            animation: glitch 0.3s infinite;
+            color: var(--danger);
+            z-index: -1;
+        }
+        
+        .glitch:hover::after {
+            animation: glitch 0.3s infinite reverse;
+            color: var(--secondary);
+            z-index: -2;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="background">
+        <div class="grid"></div>
+        <div class="scanline"></div>
+    </div>
+    
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1 class="glitch" data-text="NMAP VALIDATOR">NMAP VALIDATOR</h1>
+            <div class="subtitle">Cybersecurity Command Center</div>
+            <div class="tagline">Person 5 | Validation & Infrastructure</div>
+        </div>
+        
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('single')">Single Validation</button>
+            <button class="tab" onclick="switchTab('multiple')">Multiple Commands</button>
+            <button class="tab" onclick="switchTab('api')">API Docs</button>
+        </div>
+        
+        <!-- Single Validation Tab -->
+        <div id="single-tab" class="tab-content active">
+            <div class="card">
+                <h2 class="card-title">Validate Command</h2>
+                
+                <div class="input-group">
+                    <label for="command">NMAP Command</label>
+                    <input 
+                        type="text" 
+                        id="command" 
+                        class="terminal-input" 
+                        placeholder="nmap -sS -p 80,443 -T4 -v 192.168.1.1"
+                        onkeypress="if(event.key==='Enter') validateCommand()"
+                    >
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn" onclick="validateCommand()">
+                        <span style="position: relative; z-index: 1;">▸ Execute Validation</span>
+                    </button>
+                    <button class="btn" style="background: rgba(255,255,255,0.1);" onclick="clearResults()">
+                        <span style="position: relative; z-index: 1;">✕ Clear</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Loading -->
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>SCANNING COMMAND STRUCTURE...</p>
+            </div>
+            
+            <!-- Results -->
+            <div id="results" class="results">
+                <div class="card">
+                    <h2 class="card-title">Validation Results</h2>
+                    
+                    <div class="result-header">
+                        <div class="score-display">
+                            <div id="score-circle" class="score-circle">
+                                <div class="score-number" id="score">--</div>
+                                <div class="score-label">Score</div>
+                            </div>
+                            <div class="grade-badge" id="grade">-</div>
+                        </div>
+                        
+                        <div style="flex: 1;">
+                            <div id="status" class="status-indicator">
+                                <span>Status</span>
+                            </div>
+                            <h3 style="margin: 1rem 0; word-break: break-all;" id="validated-command"></h3>
+                            <p id="summary" style="opacity: 0.8;"></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Breakdown -->
+                    <div class="breakdown">
+                        <h3 style="margin-bottom: 1rem;">Component Breakdown</h3>
+                        <div class="breakdown-row">
+                            <div class="breakdown-item">
+                                <div class="breakdown-label">Syntax</div>
+                                <div class="breakdown-value" id="syntax-score">--</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="syntax-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-label">Weight</div>
+                                <div class="breakdown-value" id="syntax-weight">30%</div>
+                            </div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-label">Contribution</div>
+                                <div class="breakdown-value" id="syntax-contrib">--</div>
+                            </div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-label">Status</div>
+                                <div class="breakdown-value" id="syntax-status">--</div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-item">
+                                <div class="breakdown-label">Conflicts</div>
+                                <div class="breakdown-value" id="conflicts-score">--</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="conflicts-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-label">Weight</div>
+                                <div class="breakdown-value" id="conflicts-weight">40%</div>
+                            </div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-label">Contribution</div>
+                                <div class="breakdown-value" id="conflicts-contrib">--</div>
+                            </div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-label">Status</div>
+                                <div class="breakdown-value" id="conflicts-status">--</div>
+                            </div>
+                        </div>
+                        <div class="breakdown-row">
+                            <div class="breakdown-item">
+                                <div class="breakdown-label">Heuristics</div>
+                                <div class="breakdown-value" id="heuristics-score">--</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="heuristics-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-label">Weight</div>
+                                <div class="breakdown-value" id="heuristics-weight">30%</div>
+                            </div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-label">Contribution</div>
+                                <div class="breakdown-value" id="heuristics-contrib">--</div>
+                            </div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-label">Status</div>
+                                <div class="breakdown-value" id="heuristics-status">--</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Issues -->
+                    <div id="issues" class="issue-list"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Multiple Commands Tab -->
+        <div id="multiple-tab" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">Compare Multiple Commands</h2>
+                <p style="opacity: 0.7; margin-bottom: 2rem;">Validate multiple commands from different agents and choose the best one.</p>
+                
+                <div class="input-group">
+                    <label>Command 1 (e.g., from RAG Agent)</label>
+                    <input type="text" id="cmd1" class="terminal-input" placeholder="nmap -sS -p 80,443 192.168.1.1">
+                </div>
+                
+                <div class="input-group">
+                    <label>Command 2 (e.g., from Phi4 Model)</label>
+                    <input type="text" id="cmd2" class="terminal-input" placeholder="nmap -A -T4 192.168.1.1">
+                </div>
+                
+                <div class="input-group">
+                    <label>Command 3 (e.g., from Diffusion Model)</label>
+                    <input type="text" id="cmd3" class="terminal-input" placeholder="nmap -sS -p 1-1000 192.168.1.1">
+                </div>
+                
+                <button class="btn" onclick="validateMultiple()">
+                    <span style="position: relative; z-index: 1;">▸ Compare & Choose Best</span>
+                </button>
+            </div>
+            
+            <div id="multiple-results" class="results">
+                <!-- Results will be inserted here -->
+            </div>
+        </div>
+        
+        <!-- API Docs Tab -->
+        <div id="api-tab" class="tab-content">
+            <div class="card">
+                <h2 class="card-title">API Documentation</h2>
+                <p style="opacity: 0.7; margin-bottom: 2rem;">REST API Endpoints for integration with other services.</p>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;">Base URL</h3>
+                    <code style="background: rgba(0,0,0,0.5); padding: 0.5rem 1rem; border-radius: 4px; display: inline-block;">http://localhost:5000</code>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;">POST /validate</h3>
+                    <p style="opacity: 0.7; margin-bottom: 1rem;">Validate a single command</p>
+                    <pre style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 4px; overflow-x: auto; border-left: 3px solid var(--primary);">
+{
+  "command": "nmap -sS -p 80,443 192.168.1.1",
+  "verbose": false
+}</pre>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;">POST /validate/multiple</h3>
+                    <p style="opacity: 0.7; margin-bottom: 1rem;">Validate multiple commands</p>
+                    <pre style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 4px; overflow-x: auto; border-left: 3px solid var(--primary);">
+{
+  "commands": [
+    "nmap -sS -p 80,443 192.168.1.1",
+    "nmap -A -T4 192.168.1.1"
+  ],
+  "source_agents": ["RAG", "Phi4"]
+}</pre>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;">GET /health</h3>
+                    <p style="opacity: 0.7;">Check server health status</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>NMAP Validator v1.0 | Person 5 - Infrastructure & Validation</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+                Powered by Neo4j Knowledge Graph | 
+                <a href="http://localhost:5000" target="_blank">API Server</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Generate floating particles
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+            document.querySelector('.background').appendChild(particle);
+        }
+        
+        // Tab switching
+        function switchTab(tab) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById(tab + '-tab').classList.add('active');
+        }
+        
+        // Validate single command
+        async function validateCommand() {
+            const command = document.getElementById('command').value.trim();
+            
+            if (!command) {
+                alert('Please enter a command');
+                return;
+            }
+            
+            // Show loading
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('results').classList.remove('show');
+            
+            try {
+                const response = await fetch('http://localhost:5000/validate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ command, verbose: false })
+                });
+                
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                alert('Error: ' + error.message + '\n\nMake sure MCP server is running:\npython mcp_server.py');
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+        
+        // Display results
+        function displayResults(data) {
+            // Show results section
+            document.getElementById('results').classList.add('show');
+            
+            // Update score and grade
+            document.getElementById('score').textContent = data.score;
+            document.getElementById('grade').textContent = data.grade;
+            document.getElementById('validated-command').textContent = data.command;
+            document.getElementById('summary').textContent = data.summary || '';
+            
+            // Update score circle class
+            const scoreCircle = document.getElementById('score-circle');
+            scoreCircle.className = 'score-circle grade-' + data.grade.toLowerCase();
+            
+            // Update status
+            const statusEl = document.getElementById('status');
+            if (data.valid) {
+                statusEl.className = 'status-indicator valid';
+                statusEl.innerHTML = '<span>✓ VALID</span>';
+            } else {
+                statusEl.className = 'status-indicator invalid';
+                statusEl.innerHTML = '<span>✗ INVALID</span>';
+            }
+            
+            // Update breakdown
+            if (data.breakdown) {
+                updateBreakdown('syntax', data.breakdown.syntax);
+                updateBreakdown('conflicts', data.breakdown.conflicts);
+                updateBreakdown('heuristics', data.breakdown.heuristics);
+            }
+            
+            // Display issues
+            displayIssues(data);
+            
+            // Smooth scroll to results
+            setTimeout(() => {
+                document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+        
+        // Update breakdown section
+        function updateBreakdown(component, data) {
+            document.getElementById(component + '-score').textContent = data.score;
+            document.getElementById(component + '-weight').textContent = (data.weight * 100).toFixed(0) + '%';
+            document.getElementById(component + '-contrib').textContent = data.contribution.toFixed(1);
+            document.getElementById(component + '-progress').style.width = data.score + '%';
+            
+            const status = data.score >= 80 ? '✓' : data.score >= 60 ? '⚠' : '✗';
+            document.getElementById(component + '-status').textContent = status;
+        }
+        
+        // Display issues
+        function displayIssues(data) {
+            const issuesContainer = document.getElementById('issues');
+            issuesContainer.innerHTML = '';
+            
+            // Errors
+            if (data.errors && data.errors.length > 0) {
+                const section = createIssueSection('Errors', data.errors, 'error', '✗');
+                issuesContainer.appendChild(section);
+            }
+            
+            // Warnings
+            if (data.warnings && data.warnings.length > 0) {
+                const section = createIssueSection('Warnings', data.warnings, 'warning', '⚠');
+                issuesContainer.appendChild(section);
+            }
+            
+            // Suggestions
+            if (data.suggestions && data.suggestions.length > 0) {
+                const section = createIssueSection('Suggestions', data.suggestions, 'suggestion', '💡');
+                issuesContainer.appendChild(section);
+            }
+        }
+        
+        // Create issue section
+        function createIssueSection(title, items, type, icon) {
+            const section = document.createElement('div');
+            section.className = 'issue-section ' + type + 's';
+            
+            const heading = document.createElement('h3');
+            heading.innerHTML = `${icon} ${title} (${items.length})`;
+            section.appendChild(heading);
+            
+            items.forEach((item, index) => {
+                const itemEl = document.createElement('div');
+                itemEl.className = 'issue-item ' + type;
+                itemEl.textContent = item;
+                itemEl.style.animationDelay = (index * 0.1) + 's';
+                section.appendChild(itemEl);
+            });
+            
+            return section;
+        }
+        
+        // Clear results
+        function clearResults() {
+            document.getElementById('command').value = '';
+            document.getElementById('results').classList.remove('show');
+        }
+        
+        // Validate multiple commands
+        async function validateMultiple() {
+            const cmd1 = document.getElementById('cmd1').value.trim();
+            const cmd2 = document.getElementById('cmd2').value.trim();
+            const cmd3 = document.getElementById('cmd3').value.trim();
+            
+            const commands = [cmd1, cmd2, cmd3].filter(c => c);
+            
+            if (commands.length < 2) {
+                alert('Please enter at least 2 commands');
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://localhost:5000/validate/multiple', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        commands,
+                        source_agents: ['Command 1', 'Command 2', 'Command 3'].slice(0, commands.length)
+                    })
+                });
+                
+                const data = await response.json();
+                displayMultipleResults(data);
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+        
+        // Display multiple results
+        function displayMultipleResults(data) {
+            const container = document.getElementById('multiple-results');
+            container.classList.add('show');
+            
+            let html = '<div class="card">';
+            html += '<h2 class="card-title">Comparison Results</h2>';
+            
+            if (data.decision.success) {
+                html += `
+                    <div style="background: rgba(0, 255, 136, 0.1); padding: 2rem; border-radius: 8px; border: 2px solid var(--primary); margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">✓ Best Command Selected</h3>
+                        <p style="font-size: 1.2rem; margin-bottom: 1rem; word-break: break-all;">${data.decision.chosen_command}</p>
+                        <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                            <div>
+                                <div style="opacity: 0.7; font-size: 0.8rem;">Source</div>
+                                <div style="font-size: 1.2rem;">${data.decision.source_agent}</div>
+                            </div>
+                            <div>
+                                <div style="opacity: 0.7; font-size: 0.8rem;">Score</div>
+                                <div style="font-size: 1.2rem;">${data.decision.score}/100</div>
+                            </div>
+                            <div>
+                                <div style="opacity: 0.7; font-size: 0.8rem;">Grade</div>
+                                <div style="font-size: 1.2rem;">${data.decision.grade}</div>
+                            </div>
+                            <div>
+                                <div style="opacity: 0.7; font-size: 0.8rem;">Confidence</div>
+                                <div style="font-size: 1.2rem;">${data.decision.confidence.toFixed(1)}%</div>
+                            </div>
+                        </div>
+                        <p style="margin-top: 1.5rem; opacity: 0.9;">${data.decision.explanation}</p>
+                    </div>
+                `;
+            }
+            
+            // Show all results
+            html += '<h3 style="margin-bottom: 1rem;">All Candidates</h3>';
+            data.all_results.forEach((result, index) => {
+                const statusClass = result.valid ? 'valid' : 'invalid';
+                const statusIcon = result.valid ? '✓' : '✗';
+                
+                html += `
+                    <div class="breakdown-row" style="margin-bottom: 1rem;">
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Command ${index + 1}</div>
+                            <div style="word-break: break-all; font-size: 0.9rem;">${result.command}</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Score</div>
+                            <div class="breakdown-value">${result.score}/100</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Grade</div>
+                            <div class="breakdown-value">${result.grade}</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Status</div>
+                            <div class="status-indicator ${statusClass}" style="display: inline-flex;">${statusIcon}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+            
+            // Scroll to results
+            setTimeout(() => {
+                container.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+        
+        // Add some example commands on load
+        window.addEventListener('load', () => {
+            const examples = [
+                'nmap -sS -p 80,443 -T4 -v 192.168.1.1',
+                'nmap -A -O target.com',
+                'nmap -sU -p 53,161 192.168.1.1'
+            ];
+            
+            // Add example to placeholder with typing effect
+            let exampleIndex = 0;
+            setInterval(() => {
+                const input = document.getElementById('command');
+                if (input && !input.value && document.activeElement !== input) {
+                    input.placeholder = examples[exampleIndex];
+                    exampleIndex = (exampleIndex + 1) % examples.length;
+                }
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

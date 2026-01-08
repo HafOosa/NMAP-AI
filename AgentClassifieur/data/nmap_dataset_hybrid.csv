@@ -1,0 +1,70 @@
+command,complexity,ports_count,has_service_detection,has_os_detection,has_scripts,has_timing,has_stealth,scan_type_count,target_type
+"nmap -p- --script default,vuln 192.168.0.0/16",HARD,65535,0,0,1,0,0,1,network
+"nmap -p 80,161 -sT -O -6 2001:db8::3256",MEDIUM,2,0,1,0,0,0,1,ipv6
+"nmap -sn --traceroute 10.0.0.0/28",EASY,0,0,0,0,0,0,2,network
+"nmap -p 22,161 -sS -sV 192.168.100.0/28",MEDIUM,2,1,0,0,0,0,1,network
+"nmap -p 21,22 -O --script vuln --traceroute 192.168.0.0/28",HARD,2,0,1,1,0,0,1,network
+"nmap -p- -sT -sV 192.168.0.0/28",MEDIUM,65535,1,0,0,0,0,1,network
+"nmap -p- -sS --traceroute 172.16.0.246",HARD,65535,0,0,0,0,1,1,single
+"nmap -sn 192.168.100.15",EASY,0,0,0,0,0,0,1,single
+"nmap -p 25,80 -sV -T5 192.168.1.148",MEDIUM,2,1,0,0,1,0,1,single
+"nmap -p 3389,80 --script default -T5 10.0.0.0/28",MEDIUM,2,0,0,1,1,0,1,network
+"nmap -p 21,25,80 -sV --script malware -T5 --traceroute 192.168.1.0/28",HARD,3,1,0,1,1,0,1,network
+"nmap -p 3306,161,443,80 -sU -sV --script default,vuln -T5 192.168.1.0/16",HARD,4,1,0,1,1,0,1,network
+"nmap -p 3389,443,23 -O 192.168.1.0/28",MEDIUM,3,0,1,0,0,0,1,network
+"nmap -p 21 -sT 172.16.0.171",EASY,1,0,0,0,0,0,1,single
+"nmap -p 25,443,161,80 -sT -sV --script discovery 192.168.0.0/24",MEDIUM,4,1,0,1,0,0,1,network
+"nmap -p 21 -O -sV -T5 192.168.1.0/16",MEDIUM,1,1,1,0,1,0,1,network
+"nmap -p 23,443 -sS -O -T5 192.168.1.205",HARD,2,0,1,0,1,1,1,single
+"nmap -sn -T5 192.168.0.32",EASY,0,0,0,0,1,0,1,single
+"nmap -p- 192.168.0.0/28",EASY,65535,0,0,0,0,0,1,network
+"nmap -p 161,80,21,443 -sS -O -T5 192.168.1.0/16",HARD,4,0,1,0,1,1,1,network
+"nmap -p 23,25,80,3389 -sT --script auth 10.0.0.0/24",MEDIUM,4,0,0,1,0,0,1,network
+"nmap -p 25,443 -sS -sV --script discovery -T5 --traceroute 192.168.0.0/16",HARD,2,1,0,1,1,1,1,network
+"nmap -p 161 -sV -T5 192.168.0.0/28",MEDIUM,1,1,0,0,1,0,1,network
+"nmap -p 3306,443,23 -O -sV -T5 192.168.1.0/16",MEDIUM,3,1,1,0,1,0,1,network
+"nmap -p- -sS -sV 192.168.0.37",HARD,65535,1,0,0,0,1,1,single
+"nmap -p 161,25 -sU -sV -T5 192.168.100.0/24",MEDIUM,2,1,0,0,1,0,1,network
+"nmap -p 3389 -O -sV --script default,vuln 192.168.1.227",MEDIUM,1,1,1,1,0,0,1,single
+"nmap -p 23,3306 --script default,vuln -T5 192.168.100.65",MEDIUM,2,0,0,1,1,0,1,single
+"nmap -p 23 -sT -sV --script default,vuln 192.168.0.0/28",MEDIUM,1,1,0,1,0,0,1,network
+"nmap -p 443,3306,3389,21 -sV --traceroute 192.168.1.0/24",MEDIUM,4,1,0,0,0,0,1,network
+"nmap -p 161 --traceroute 192.168.0.156",EASY,1,0,0,0,0,0,1,single
+"nmap -p- -sV 192.168.0.0/16",MEDIUM,65535,1,0,0,0,0,1,network
+"nmap -sn --traceroute 192.168.100.88",EASY,0,0,0,0,0,0,1,single
+"nmap -p 80 -sU -O 192.168.100.35",MEDIUM,1,0,1,0,0,0,1,single
+"nmap -p 21,3306 -sT -sV --script vuln -T5 192.168.0.157",HARD,2,1,0,1,1,0,1,single
+"nmap -p 23,80,25 -sV -T5 10.0.0.0/16",MEDIUM,3,1,0,0,1,0,1,network
+"nmap -p- -sU --script vuln -T5 192.168.0.0/24",HARD,65535,0,0,1,1,0,1,network
+"nmap -p 53,23,80,25 -sS -sV 172.16.0.0/16",HARD,4,1,0,0,0,1,1,network
+"nmap -p 3306,80 -sV 10.0.0.0/28",MEDIUM,2,1,0,0,0,0,1,network
+"nmap -p- -sS -O -sV -T5 192.168.0.0/24",HARD,65535,1,1,0,1,1,1,network
+"nmap -p- -sU -O -sV --script default 192.168.1.0/16",HARD,65535,1,1,1,0,0,1,network
+"nmap -p- -sV -6 2001:db8::5647",MEDIUM,65535,1,0,0,0,0,1,ipv6
+"nmap -p 161 -T5 192.168.1.0/28",EASY,1,0,0,0,1,0,1,network
+"nmap -p 21,80,3306 -T5 10.0.0.0/28",EASY,3,0,0,0,1,0,1,network
+"nmap -p- -sS 172.16.0.15",HARD,65535,0,0,0,0,1,1,single
+"nmap -p 3389,80,53 -sV --script default 192.168.1.0/24",MEDIUM,3,1,0,1,0,0,1,network
+"nmap -p 3306 --script discovery 192.168.100.0/24",MEDIUM,1,0,0,1,0,0,1,network
+"nmap -p 22,443,21 -sU -sV 10.0.0.0/28",MEDIUM,3,1,0,0,0,0,1,network
+"nmap -sn --traceroute 172.16.0.101",EASY,0,0,0,0,0,0,1,single
+"nmap -sn -T5 192.168.100.0/28",EASY,0,0,0,0,1,0,1,network
+"nmap -p- -sT -O 172.16.0.193",HARD,65535,0,1,0,0,0,1,single
+"nmap -p 443 192.168.1.0/16",EASY,1,0,0,0,0,0,1,network
+"nmap -p 21,53,25 --script default,vuln 10.0.0.0/28",MEDIUM,3,0,0,1,0,0,1,network
+"nmap -p 161,22 -sV 192.168.100.0/16",MEDIUM,2,1,0,0,0,0,1,network
+"nmap -p 23 -T5 10.0.0.0/24",EASY,1,0,0,0,1,0,1,network
+"nmap -p 25 -O -sV 10.0.0.0/16",MEDIUM,1,1,1,0,0,0,1,network
+"nmap -p 25 -O -sV 192.168.0.0/16",MEDIUM,1,1,1,0,0,0,1,network
+"nmap -p- -sV 192.168.1.0/16",MEDIUM,65535,1,0,0,0,0,1,network
+"nmap -p 21,3389 -sU -O --script auth -T5 --traceroute 172.16.0.74",HARD,2,0,1,1,1,0,1,single
+"nmap -p- -sS -sV --script vuln --traceroute 192.168.100.0/24",HARD,65535,1,0,1,0,1,1,network
+"nmap -p 21,3306,22,23 -sV -T5 192.168.1.58",MEDIUM,4,1,0,0,1,0,1,single
+"nmap -p- -sV 192.168.1.0/28",MEDIUM,65535,1,0,0,0,0,1,network
+"nmap -p 80,22,3306,443 -sS 192.168.1.0/24",HARD,4,0,0,0,0,1,1,network
+"nmap -p- -sS -sV --script vuln -T5 10.0.0.193",HARD,65535,1,0,1,1,1,1,single
+"nmap -p 3389,53 -O -T5 192.168.100.0/16",MEDIUM,2,0,1,0,1,0,1,network
+"nmap -p 161,21 -sT -sV --script default,vuln 172.16.0.0/16",MEDIUM,2,1,0,1,0,0,1,network
+"nmap -p- 10.0.0.30",EASY,65535,0,0,0,0,0,1,single
+"nmap -p 80 192.168.0.0/24",EASY,1,0,0,0,0,0,1,network
+"nmap -p- -sS -sV --traceroute 192.168.1.0/24",HARD,65535,1,0,0,0,1,1,network

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "nmap-ai": {
+      "command": "python",
+      "args": ["-u", "C:\\Users\\Admin\\OneDrive\\Desktop\\Nmap_Agents\\mcp_server\\server.py"],
+      "env": {
+        "PYTHONPATH": "C:\\Users\\Admin\\OneDrive\\Desktop\\Nmap_Agents"
+      }
+    }
+  }
+}

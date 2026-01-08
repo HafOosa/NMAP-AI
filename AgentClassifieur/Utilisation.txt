@@ -1,0 +1,87 @@
+INSTRUCTIONS POUR UTILISER LE MODULE PERSONNE 3
+==============================================
+
+Bonjour l'équipe !
+
+Mon module Personne 3 (Classification de complexité + Router intelligent Nmap) est TERMINÉ À 100% et prêt à être intégré dans le projet NMAP-AI.
+
+Ce que fait mon module :
+- Analyse une phrase en français (ex : "Scan furtif avec decoys et fragmentation sur 10.0.0.1")
+- Détermine si elle est EASY, MEDIUM ou HARD
+- Donne un score de confiance
+- Explique pourquoi (ex : "détecté fragmentation et decoys")
+- Rejette les phrases hors sujet (ex : "Quelle est la météo ?")
+- Indique vers quel moteur envoyer la requête :
+  → EASY    → RAG (Personne 1)
+  → MEDIUM  → Phi-4 (Personne 2)
+  → HARD    → Diffusion (Personne 2)
+
+Comment l'utiliser ?
+
+Il y a DEUX façons très simples :
+
+1. LA PLUS FACILE : Utiliser l'API (recommandé pour l'intégration finale)
+
+   - Lance l'API avec la commande :
+     python src/api.py
+
+   - L'API démarre sur http://localhost:8001
+
+   - Pour tester rapidement :
+     Ouvre ton navigateur → http://localhost:8001/docs
+     (tu verras une belle interface pour tester directement)
+
+   - Pour appeler l'API depuis votre code (exemple en Python) :
+     import requests
+
+     response = requests.post(
+         "http://localhost:8001/predict",
+         json={"query": "votre phrase ici"}
+     )
+     result = response.json()
+
+     print(result["predicted_complexity"])  # EASY / MEDIUM / HARD / IRRELEVANT
+     print(result["confidence"])            # ex : 0.98
+     print(result["explanation"])           # explication claire
+
+2. Utiliser directement la fonction Python (si vous ne voulez pas lancer l'API)
+
+   Dans votre code principal, ajoutez simplement :
+     from router import predict_complexity
+
+     result = predict_complexity("Scan simple sur 192.168.1.1")
+
+     if result["predicted_complexity"] == "EASY":
+         # Envoyer à RAG
+     elif result["predicted_complexity"] == "MEDIUM":
+         # Envoyer à Phi-4
+     elif result["predicted_complexity"] == "HARD":
+         # Envoyer à Diffusion
+
+Prérequis à installer (une seule fois)
+
+pip install spacy scikit-learn pandas joblib fastapi uvicorn neo4j
+
+python -m spacy download fr_core_news_sm
+
+(Neo4j est optionnel, mon module fonctionne sans)
+
+Test rapide pour vérifier que tout marche
+
+1. Lance l'API :
+   python src/api.py
+
+2. Dans un autre terminal, teste avec cette commande PowerShell :
+   (Invoke-WebRequest -Uri "http://localhost:8001/predict" -Method POST -ContentType "application/json" -Body '{"query": "Scan furtif avec decoys et fragmentation sur 10.0.0.1"}').Content
+
+   Tu dois voir "HARD" avec une confiance très élevée.
+
+Le module est robuste, testé, documenté et prêt pour l'intégration finale.
+
+N'hésitez pas à me contacter si vous avez la moindre question ou besoin d'aide pour l'intégrer !
+
+Merci à toute l'équipe pour la collaboration !
+
+[Rami Hala]
+Personne 3 – Complexity Classifier & Router
+27 décembre 2025

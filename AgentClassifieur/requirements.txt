@@ -1,0 +1,7 @@
+spacy
+scikit-learn
+pandas
+neo4j
+python-dotenv
+numpy
+joblib

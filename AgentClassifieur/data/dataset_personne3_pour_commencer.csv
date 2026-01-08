@@ -1,0 +1,52 @@
+query,label
+"Scanne l'ip 192.168.1.1",EASY
+"Fais un scan simple des ports",EASY
+"Scan rapide sur mon réseau local",EASY
+"Scanne les ports ouverts sur 10.0.0.1",EASY
+"Ping scan sur 192.168.0.0/24",EASY
+"Fais un scan de base sur google.com",EASY
+"Scan les ports par défaut sur cette machine",EASY
+"Scanne mon ordinateur",EASY
+"Liste les hôtes vivants sur le réseau",EASY
+"Simple port scan sur localhost",EASY
+"Détecte les services sur 192.168.1.10",MEDIUM
+"Scan TCP complet sur un serveur",MEDIUM
+"Détecte la version des services sur 8.8.8.8",MEDIUM
+"Scan avec détection d'OS sur une IP",MEDIUM
+"Fais un scan SYN sur tout le réseau",MEDIUM
+"Scanne les ports UDP sur 192.168.1.1",MEDIUM
+"Scan agressif sur une cible",MEDIUM
+"Détecte l'OS et les services en même temps",MEDIUM
+"Scan avec timing T4 sur un hôte",MEDIUM
+"Utilise un scan furtif sur le réseau",MEDIUM
+"Scan avec détection de firewall",MEDIUM
+"Fais un scan idle sur une IP",MEDIUM
+"Utilise le timing T2 avec version detection",MEDIUM
+"Scan UDP et TCP ensemble",MEDIUM
+"Scanne avec evasion de firewall",MEDIUM
+"Scan très lent pour éviter la détection",HARD
+"Utilise T0 avec fragmentation et 200 scripts NSE",HARD
+"Scan avec spoofing d'adresse MAC et IP",HARD
+"Fais un scan qui passe tous les IDS",HARD
+"Combine timing T1, decoy, proxy et 500 scripts",HARD
+"Scan avec badsum, data length random et window scaling",HARD
+"Utilise zombie idle scan avec 10 proxies",HARD
+"Scan FTP bounce sur plusieurs serveurs",HARD
+"Combine source port spoofing et TTL personnalisé",HARD
+"Exécute tous les scripts vulnérabilités avec timing insane",HARD
+"Scan avec randomisation complète des options",HARD
+"Utilise --script avec arguments personnalisés complexes",HARD
+"Scan en mode parano avec data random et delays",HARD
+"Combine IPv6, fragmentation, et scripts http avancés",HARD
+"Scan avec MTU personnalisé et bad checksum",HARD
+"Fais un scan qui évite tous les logs du firewall",HARD
+"Utilise decoy, spoof source, et 300 scripts en parallèle",HARD
+"Scan avec --reason et --packet-trace en mode verbeux",HARD
+"Combine NSE scripts personnalisés avec timing T5 inversé",HARD
+"Scan complet avec toutes les options d'évasion possibles",HARD
+"Utilise proxy socks, random data, et scripts brutes",HARD
+"Scan zombie + fragmentation + badsum + low TTL",HARD
+"Fais un scan qui ressemble à du trafic légitime",HARD
+"Combine tous les flags TCP personnalisés avec scripts",HARD
+"Scan avec injection de paquets modifiés à la main",HARD
+"Utilise toutes les techniques d'évasion Nmap avancées",HARD
