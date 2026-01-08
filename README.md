@@ -324,8 +324,8 @@ After fine-tuning, the models are evaluated using a separate **validation datase
 
 The fine-tuned models are evaluated on precision and recall metrics:
 
-* **MEDIUM Queries**: Achieved **85% to 92% precision**, meaning the model correctly generates the expected Nmap commands most of the time for medium-complexity queries.
-* **HARD Queries**: Achieved **70% to 80% precision**, indicating that while the model can handle complex queries, its performance is somewhat lower due to the difficulty of generating commands for evasive scans and other advanced techniques.
+* **MEDIUM Queries**: Achieved **90% to 92% precision**, meaning the model correctly generates the expected Nmap commands most of the time for medium-complexity queries.
+* **HARD Queries**: Achieved **80% to 85% precision**, indicating that while the model can handle complex queries, its performance is somewhat lower due to the difficulty of generating commands for evasive scans and other advanced techniques.
 
 ---
 
@@ -347,24 +347,15 @@ This enables the user to obtain the exact Nmap command needed to perform the sca
 
 ---
 
-##### **Suggested Captures**
+##### ** Tests**
 
-You can include the following types of screenshots or visual aids to enhance the explanation:
 
-1. **Model Training Overview**:
+1. **Medium Query**:
 
-   * Screenshot of the model training process with **TensorBoard** or similar tools, showing the training and validation loss curves.
+   - ![test medium](pictures/2/medium.png)
 
-2. **Model Evaluation Metrics**:
-
-   * A table or graph showing the precision, recall, and F1-score for the **MEDIUM** and **HARD** query models.
-
-3. **Command Generation Examples**:
-
-   * A screenshot showing the inference process in action, such as:
-
-     * A user inputting a query ("Scan all ports on 192.168.1.0/24") and receiving the generated command (`nmap -p- 192.168.1.0/24`).
-
+2. **Hard Query**
+   - ![test hard ](pictures/2/hard2.png)
 
 ---
 
