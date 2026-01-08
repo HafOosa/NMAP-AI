@@ -722,27 +722,6 @@ Responsible for the complete validation layer, the reliability of the infrastruc
 - **Interactive Flask web application** with real-time feedback
 - **Seamless integration** with MCP server and other agents
 
-
-#### 🗂️ Project Structure  
-
-```
-nmap_ai_project/
-├── validator_system/
-│   ├── config.py
-│   ├── syntax_checker.py
-│   ├── conflict_detector.py
-│   ├── heuristic_checker.py
-│   ├── scoring_system.py
-│   ├── final_decision.py
-│   ├── validator.py              → API principale de validation
-│   └── test_validator.py         → Suite de tests
-├── frontend_flask/
-│   ├── app.py                    → Application Flask principale
-│   ├── app_flask.py
-│   ├── templates/                → Templates HTML (Jinja2)
-└── requirements.txt              → Inclut Flask, Flask-WTF, etc.
-```
-
 #### ✅ Checklist des Livrables
 
 - ✅ Syntax Checker
@@ -823,7 +802,7 @@ git lfs pull
 
 ## Utilisation
 
-### Mode 1 : Interface Web (Recommandé)
+### Mode 1 : Interface Web
 
 1. **Démarrer le serveur Flask**
 ```bash
@@ -1036,87 +1015,23 @@ NMAP-AI/
 ---
 
 
-## Résultats et Évaluation
-
-### Performance des Modèles
-
-| Modèle | Niveau | Précision | Recall | F1-Score |
-|--------|--------|-----------|--------|----------|
-| Templates RAG | EASY | 95% | 93% | 94% |
-| Phi-4 (T5-base + LoRA) | MEDIUM | 88% | 85% | 86.5% |
-| Diffusion | HARD | 75% | 72% | 73.5% |
-
-### Classification (Random Forest)
-
-| Métrique | Score |
-|----------|-------|
-| Accuracy globale | 91.3% |
-| Précision EASY | 94% |
-| Précision MEDIUM | 89% |
-| Précision HARD | 88% |
-
-### Système de Validation
-
-| Composant | Taux de détection |
-|-----------|------------------|
-| Syntax Checker | 98% d'erreurs détectées |
-| Conflict Detector | 95% de conflits identifiés |
-| Heuristic Checker | 92% d'optimisations suggérées |
-
-### Self-Correction
-
-- **Taux de correction réussie** : 87%
-- **Itérations moyennes** : 1.4
-- **Taux de timeout (3 itérations)** : 8%
-
----
 
 ## Tests et Validation
 
-### Tests Unitaires
-
-```bash
-# Tests du classificateur
-python -m pytest tests/test_classifier.py
-
-# Tests de validation
-python -m pytest tests/test_validator.py
-
-# Tests RAG
-python -m pytest tests/test_rag.py
-
-# Tests self-correction
-python -m pytest tests/test_self_correction.py
-```
-
-### Tests d'Intégration
-
-```bash
-# Pipeline complet
-python tests/test_integration.py
-
-# Test end-to-end
-python tests/test_e2e.py
-```
-
 ### Tests de Charge
 
-```bash
-# Test API FastAPI
-locust -f tests/load_test_api.py --host=http://localhost:8002
-
-# Test Frontend Flask
-locust -f tests/load_test_frontend.py --host=http://localhost:5000
-```
+![test](pictures/2/global1.png)
 
 ### Exemples de Test
 
 **Test 1 : Requête EASY**
 ```
 Input: "Scan port 22 sur 192.168.1.1"
-Classification: EASY (confidence: 0.98)
-Generated: nmap -p 22 192.168.1.1
-Validation: PASSED (Score: 95/100, Grade: A)
+![easy](pictures/2/easy.png)
+![easy2](pictures/2/easy2.png)
+
+
+
 ```
 
 **Test 2 : Requête MEDIUM**
