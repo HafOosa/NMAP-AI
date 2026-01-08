@@ -1,54 +1,54 @@
-# NMAP-AI : Générateur de Commandes Nmap Basé sur l'IA
+# NMAP-AI: AI-Based Nmap Command Generator
 
-## Table des matières
+## Table of Contents
 
 1. [Introduction](#introduction)
-2. [Objectifs](#objectifs)
-3. [Architecture Globale](#architecture-globale)
-4. [Répartition des Tâches](#répartition-des-tâches)
-5. [Technologies Utilisées](#technologies-utilisées)
-6. [Modules et Fonctionnalités](#modules-et-fonctionnalités)
-   - [Personne 1 : Imane Allioui](#personne-1--imane-allioui)
-   - [Personne 2 : Chaimae Ababri](#personne-2--chaimae-ababri)
-   - [Personne 3 : Rami Hala](#personne-3--rami-hala)
-   - [Personne 4 : Habib Samia](#personne-4--habib-samia)
-   - [Personne 5 : El Guallaf Hafssa](#personne-5--el-guallaf-hafssa)
-7. [Installation et Configuration](#installation-et-configuration)
-8. [Utilisation](#utilisation)
-9. [Structure du Projet](#structure-du-projet)
+2. [Objectives](#objectives)
+3. [Global Architecture](#global-architecture)
+4. [Task Distribution](#task-distribution)
+5. [Technologies Used](#technologies-used)
+6. [Modules and Features](#modules-and-features)
+   - [Person 1: Imane Allioui](#person-1--imane-allioui)
+   - [Person 2: Chaimae Ababri](#person-2--chaimae-ababri)
+   - [Person 3: Rami Hala](#person-3--rami-hala)
+   - [Person 4: Habib Samia](#person-4--habib-samia)
+   - [Person 5: El Guallaf Hafssa](#person-5--el-guallaf-hafssa)
+7. [Installation and Setup](#installation-and-setup)
+8. [Usage](#usage)
+9. [Project Structure](#project-structure)
 10. [API Documentation](#api-documentation)
-11. [Résultats et Évaluation](#résultats-et-évaluation)
-12. [Tests et Validation](#tests-et-validation)
-13. [Déploiement](#déploiement)
-14. [Avenir et Améliorations](#avenir-et-améliorations)
-15. [Contribuer](#contribuer)
-16. [Licence](#licence)
+11. [Results and Evaluation](#results-and-evaluation)
+12. [Testing and Validation](#testing-and-validation)
+13. [Deployment](#deployment)
+14. [Future and Improvements](#future-and-improvements)
+15. [Contribute](#contribute)
+16. [License](#license)
 
 ---
 
 ## Introduction
 
-Le projet **NMAP-AI** est une solution innovante qui simplifie l'utilisation de **Nmap**, un outil de sécurité réseau puissant mais complexe, en permettant de générer automatiquement des commandes **Nmap** à partir de requêtes en **langage naturel**. 
+The **NMAP-AI** project is an innovative solution that simplifies the use of **Nmap**, a powerful but complex network security tool, by automatically generating **Nmap** commands from **natural language** queries. 
 
-Grâce à l'intelligence artificielle, aux modèles de machine learning, et à un Knowledge Graph enrichi, ce projet transforme des requêtes complexes en commandes exploitables pour des analyses de sécurité réseau professionnelles.
+Using artificial intelligence, machine learning models, and an enriched Knowledge Graph, this project converts complex queries into actionable commands for professional network security analysis.
 
-### Principe de fonctionnement
+### Operating Principle
 
-Les requêtes utilisateur sont classées automatiquement en trois niveaux de complexité (**EASY**, **MEDIUM**, **HARD**), puis routées vers le moteur d'IA approprié. Chaque commande générée passe par un système de validation multi-couches avant d'être présentée à l'utilisateur via une interface web intuitive.
-
----
-
-## Objectifs
-
-- **Démocratiser Nmap** : Permettre aux utilisateurs non-experts d'utiliser Nmap efficacement
-- **Automatiser la génération** : Convertir des requêtes en langage naturel en commandes Nmap précises
-- **Classifier intelligemment** : Évaluer automatiquement la complexité des requêtes
-- **Valider rigoureusement** : Garantir la fiabilité et la sécurité des commandes générées
-- **Optimiser les performances** : Utiliser des modèles d'IA spécialisés selon la complexité
+User queries are automatically classified into three complexity levels (**EASY**, **MEDIUM**, **HARD**), then routed to the appropriate AI engine. Each generated command undergoes a multi-layer validation system before being presented to the user via an intuitive web interface.
 
 ---
 
-## Architecture Globale
+## Objectives
+
+- **Democratize Nmap**: Enable non-expert users to use Nmap efficiently
+- **Automate generation**: Convert natural language queries into precise Nmap commands
+- **Intelligently classify**: Automatically evaluate the complexity of queries
+- **Rigorous validation**: Ensure the reliability and security of the generated commands
+- **Optimize performance**: Use specialized AI models based on complexity
+
+---
+
+## Global Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -103,124 +103,128 @@ Les requêtes utilisateur sont classées automatiquement en trois niveaux de com
 
 ## Répartition des Tâches
 
-| Personne | Rôle & Responsabilité |
-|----------|----------------------|
-| **Personne 1 - Imane Allioui** | Architecte Base de Données, RAG et Infrastructure Agent<br>• Construction et gestion du Knowledge Graph Neo4j (10,575 nœuds)<br>• Implémentation du système RAG<br>• Développement de l'agent de compréhension<br>• Configuration du serveur MCP (FastMCP)<br>• Orchestration du pipeline |
-| **Personne 2 - Chaimae Ababri** | Fine-tuning et Modèles IA<br>• Préparation et enrichissement du dataset<br>• Fine-tuning Phi-4 (requêtes MEDIUM)<br>• Fine-tuning Diffusion (requêtes HARD)<br>• Création des scripts d'inférence<br>• Évaluation des modèles |
-| **Personne 3 - Rami Hala** | Classification et Routage<br>• Extraction de features NLP avancées<br>• Classification ML (Random Forest)<br>• Règles métier post-prédiction<br>• API REST FastAPI<br>• Routage intelligent |
-| **Personne 4 - Habib Samia** | Amélioration RAG et Self-Correction<br>• Optimisation de l'agent RAG<br>• Analyse NLP avec spaCy<br>• Implémentation du cache Neo4j<br>• Mécanisme de self-correction automatique<br>• Limitation à 3 itérations |
-| **Personne 5 - El Guallaf Hafssa** | Infrastructure, Validation et Frontend<br>• Système de validation multi-couches<br>• Détection de conflits (Neo4j)<br>• Vérification heuristique<br>• Système de scoring et notation<br>• Agent de décision finale<br>• Interface web Flask complète |
+| Person                           | Role & Responsibilities                                                                                                                                                                                                                                                  |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Person 1 - Imane Allioui**     | Database Architect, RAG, and Infrastructure Agent<br>• Building and managing the Neo4j Knowledge Graph (10,575 nodes)<br>• Implementing the RAG system<br>• Developing the comprehension agent<br>• Configuring the MCP server (FastMCP)<br>• Orchestrating the pipeline |
+| **Person 2 - Chaimae Ababri**    | Fine-tuning and AI Models<br>• Preparing and enriching the dataset<br>• Fine-tuning Phi-4 (MEDIUM queries)<br>• Fine-tuning Diffusion (HARD queries)<br>• Creating inference scripts<br>• Evaluating the models                                                          |
+| **Person 3 - Rami Hala**         | Classification and Routing<br>• Extracting advanced NLP features<br>• ML Classification (Random Forest)<br>• Post-prediction business rules<br>• FastAPI REST API<br>• Intelligent routing                                                                               |
+| **Person 4 - Habib Samia**       | RAG Enhancement and Self-Correction<br>• Optimizing the RAG agent<br>• NLP analysis with spaCy<br>• Implementing Neo4j caching<br>• Automatic self-correction mechanism<br>• Limiting to 3 iterations                                                                    |
+| **Person 5 - El Guallaf Hafssa** | Infrastructure, Validation, and Frontend<br>• Multi-layer validation system<br>• Conflict detection (Neo4j)<br>• Heuristic checks<br>• Scoring and grading system<br>• Final decision agent<br>• Full Flask web interface                                                |
+
 
 ---
 
-## Technologies Utilisées
+## Technologies Used
 
-### Backend & IA
-- **Python 3.10+** : Langage principal
-- **PyTorch** : Framework pour le fine-tuning
-- **Hugging Face Transformers** : Modèles T5, Phi-4
-- **spaCy** : Traitement du langage naturel
-- **scikit-learn** : Classification ML (Random Forest)
+### Backend & AI
+- **Python 3.10+**: Main programming language
+- **PyTorch**: Framework for fine-tuning
+- **Hugging Face Transformers**: T5, Phi-4 models
+- **spaCy**: Natural Language Processing
+- **scikit-learn**: ML Classification (Random Forest)
 
-### Base de Données & Knowledge Graph
-- **Neo4j** : Base de données graphe (10,575 nœuds)
-- **Cypher** : Langage de requêtes Neo4j
+### Database & Knowledge Graph
+- **Neo4j**: Graph database (10,575 nodes)
+- **Cypher**: Neo4j query language
 
 ### API & Web
-- **FastAPI** : API REST pour la classification
-- **Flask** : Interface web frontend
-- **FastMCP** : Serveur MCP pour l'orchestration
+- **FastAPI**: REST API for classification
+- **Flask**: Frontend web interface
+- **FastMCP**: MCP server for orchestration
 
 ### DevOps & Versioning
-- **Git LFS** : Gestion des fichiers volumineux
-- **CORS** : Support cross-origin pour les tests
+- **Git LFS**: Large file management
+- **CORS**: Cross-origin support for testing
 
 ---
 
-## Modules et Fonctionnalités
+## Modules and Features
 
-### Personne 1 : Imane Allioui
+### Person 1: Imane Allioui
 
-**Rôle** : Database Architect, RAG, and Agent Infrastructure
+**Role**: Database Architect, RAG, and Agent Infrastructure
 
-#### 🎯 Responsabilités Principales
+#### 🎯 Main Responsibilities
 
-1. **Création et configuration de Neo4j**
-2. **Design du Knowledge Graph** (10,575 nœuds)
-3. **Relations et liens entre concepts NMAP**
-4. **Implémentation du système RAG**
-5. **Optimisation des requêtes Cypher**
-6. **Développement de l'Agent de Compréhension**
-7. **Configuration et déploiement du serveur MCP via FastMCP**
-8. **Orchestration du pipeline d'agents**
-9. **Intégration RAG avec le système de génération**
+1. **Creation and configuration of Neo4j**
+2. **Design of the Knowledge Graph** (10,575 nodes)
+3. **Relations and links between NMAP concepts**
+4. **Implementation of the RAG system**
+5. **Optimization of Cypher queries**
+6. **Development of the Comprehension Agent**
+7. **Configuration and deployment of the MCP server via FastMCP**
+8. **Orchestration of the agent pipeline**
+9. **Integration of RAG with the generation system**
+
 
 #### 📊 Neo4j Knowledge Graph – Architecture
 
-**Statistiques**
-- **Total des nœuds** : 10,575
-- **Types de relations** : Multiples (USES, REQUIRES, CONFLICTS_WITH, etc.)
-- **Labels principaux** : Option, ScanType, Port, Script, Service, Protocol
+**Statistics**
+- **Total nodes**: 10,575
+- **Types of relationships**: Multiple (USES, REQUIRES, CONFLICTS_WITH, etc.)
+- **Main labels**: Option, ScanType, Port, Script, Service, Protocol
 
-**Visualisations**
+**Visualizations**
 - ![Total Nodes](pictures/neo4j_total_nodes.png)
-- ![Labels Distribution](C:\Users\Admin\OneDrive\Desktop\Nmap_Agents\neo4j_labels.png)
-- ![Relationships](C:\Users\Admin\OneDrive\Desktop\Nmap_Agents\neo4j_relationships.png)
-- ![Graph View](C:\Users\Admin\OneDrive\Desktop\Nmap_Agents\neo4j_graph_view.png)
+- ![Labels Distribution](pictures/neo4j_labels.png)
+- ![Relationships](pictures/neo4j_relationships.png)
+- ![Graph View](pictures/neo4j_graph_view.png)
 
-#### 🧠 Comprehension Agent – Vérification de Pertinence NMAP
+#### 🧠 Comprehension Agent – NMAP Relevance Checking
 
-**Rôle Principal**
-Filtrer les requêtes utilisateur pour évaluer leur pertinence au domaine NMAP, prévenant le traitement hors-sujet et améliorant la sécurité du système.
+**Main Role**
+Filter user queries to assess their relevance to the NMAP domain, preventing out-of-scope processing and improving system security.
 
-**Objectifs Clés**
-- Autoriser uniquement les requêtes liées au scan réseau
-- Bloquer les commandes NMAP inutiles ou risquées
-- Garantir que seuls les scans valides progressent dans le pipeline
+**Key Objectives**
+- Allow only NMAP-related queries
+- Block unnecessary or risky NMAP commands
+- Ensure only valid scans proceed in the pipeline
 
-**Mécanisme de Détection**
-- **Mots-clés NMAP positifs** : scan, nmap, ports, network, IP, host, TCP, UDP, SYN, ICMP, stealth, service detection, OS detection, IDS evasion, NSE scripts, etc.
-- **Mots-clés négatifs** : weather, cooking, sports, movies, music, programming général, math, greetings
-- **Reconnaissance de patterns** : commandes NMAP explicites, adresses IP, options CLI (-sV, -p, -A, etc.)
+**Detection Mechanism**
+- **Positive NMAP keywords**: scan, nmap, ports, network, IP, host, TCP, UDP, SYN, ICMP, stealth, service detection, OS detection, IDS evasion, NSE scripts, etc.
+- **Negative keywords**: weather, cooking, sports, movies, music, general programming, math, greetings
+- **Pattern recognition**: explicit NMAP commands, IP addresses, CLI options (-sV, -p, -A, etc.)
 
-**Score de Pertinence**
-Normalisé entre 0 et 1
-- **Bonus** : mots-clés/patterns NMAP, longueur de requête raisonnable
-- **Pénalités** : mots-clés non-NMAP
-- **Seuil** : pertinent si score ≥ 0.5
 
-**Sortie**
+**Relevance Score**
+Normalized between 0 and 1
+- **Bonus**: NMAP keywords/patterns, reasonable query length
+- **Penalties**: Non-NMAP keywords
+- **Threshold**: Relevant if score ≥ 0.5
+
+**Output**
 ```json
 {
   "is_relevant": true/false,
   "confidence": 0.85,
   "keywords_found": ["scan", "port", "192.168.1.0"],
-  "reason": "Requête NMAP valide détectée"
+  "reason": "Valid NMAP query detected"
 }
 ```
 
 #### 🚀 FastMCP Server (server.py)
 
 **Description**
-Serveur MCP prêt pour la production basé sur FastMCP, avec gestion d'erreurs robuste, suppression des avertissements et fallbacks complets.
+Production-ready MCP server based on FastMCP, with robust error handling, warning suppression, and full fallbacks.
 
-**Fonctionnalités Clés**
-- Pipeline orchestrateur intégré
-- 9 outils disponibles (8 fonctionnels + health check)
-- Gestion d'imports robuste avec fallbacks
-- Logging et monitoring structurés
+**Key Features**
+- Integrated orchestration pipeline
+- 9 available tools (8 functional + health check)
+- Robust imports management with fallbacks
+- Structured logging and monitoring
 
-**Outils Disponibles**
 
-1. `classify_nmap_query` – Classification de complexité (EASY/MEDIUM/HARD)
-2. `generate_nmap_easy` – Génération de commandes simples (templates)
-3. `generate_nmap_medium` – Génération intermédiaire (T5-small + LoRA)
-4. `generate_nmap_hard` – Génération avancée (modèles Diffusion)
-5. `validate_nmap_command` – Validation multi-étapes
-6. `kg_lookup_option` – Recherche dans le Knowledge Graph Neo4j
-7. `self_correct_command` – Self-correction itérative
-8. `generate_and_validate` – Pipeline complet (classification → génération → validation → correction)
-9. `health_check` – Vérification de l'état des composants
+**Available Tools**
+
+1. `classify_nmap_query` – Complexity classification (EASY/MEDIUM/HARD)
+2. `generate_nmap_easy` – Simple command generation (templates)
+3. `generate_nmap_medium` – Intermediate generation (T5-small + LoRA)
+4. `generate_nmap_hard` – Advanced generation (Diffusion models)
+5. `validate_nmap_command` – Multi-step validation
+6. `kg_lookup_option` – Lookup in the Neo4j Knowledge Graph
+7. `self_correct_command` – Iterative self-correction
+8. `generate_and_validate` – Complete pipeline (classification → generation → validation → correction)
+9. `health_check` – Component status check
 
 **Structure**
 ```
@@ -240,33 +244,33 @@ python server.py
 
 ### Personne 2 : Chaimae Ababri
 
-**Rôle** : Fine-tuning et Gestion des Modèles IA
+**Objectives**:
 
-#### Étapes Détaillées
+#### Detailed Steps
 
-##### 1. Préparation du Dataset
+##### 1. Dataset Preparation
 
-**Enrichissement du dataset**
-- Création de datasets pour requêtes EASY, MEDIUM et HARD
-- Intégration de services (SSH, FTP, HTTP, etc.)
-- Association services-ports
+**Dataset Enrichment**
+- Creation of datasets for EASY, MEDIUM, and HARD queries
+- Integration of services (SSH, FTP, HTTP, etc.)
+- Service-port association
 
-**Paraphrasing des requêtes**
-- Augmentation du dataset avec des paraphrases
-- Couverture des variations de syntaxe et style
+**Query Paraphrasing**
+- Augmenting the dataset with paraphrases
+- Covering syntax and style variations
 
-**Exemple de données**
+**Data Example**
 ```json
 {
   "instruction": "Scan port 22 on 192.168.1.0/24",
   "input": "",
   "output": "nmap -p 22 192.168.1.0/24"
 }
-```
 
-##### 2. Fine-Tuning des Modèles
 
-**Modèle Phi-4 (Requêtes MEDIUM)**
+##### 2. Model Fine-Tuning
+
+**Phi-4 Model (MEDIUM Queries)**
 ```python
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 from transformers import Trainer, TrainingArguments
@@ -275,7 +279,7 @@ from datasets import load_dataset
 model = T5ForConditionalGeneration.from_pretrained("t5-base")
 tokenizer = T5Tokenizer.from_pretrained("t5-base")
 
-# Charger et préparer le dataset
+# Load and prepare the dataset
 train_dataset = load_dataset("data/t5_balanced_train.json")
 val_dataset = load_dataset("data/t5_balanced_val.json")
 
@@ -294,11 +298,10 @@ trainer = Trainer(
     eval_dataset=val_dataset,
     tokenizer=tokenizer,
 )
-
 trainer.train()
 ```
 
-**Modèle Diffusion (Requêtes HARD)**
+**Diffusion Model (HARD Queries)**
 ```python
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 from peft import PeftModel
@@ -315,273 +318,285 @@ inputs = tokenizer(instruction, return_tensors="pt")
 outputs = peft_model.generate(**inputs)
 
 generated_command = tokenizer.decode(outputs[0], skip_special_tokens=True)
-print(f"Commande générée : {generated_command}")
-```
+print(f"Generated Command: {generated_command}")
 
-##### 3. Évaluation des Modèles
 
-**Résultats**
-- Requêtes MEDIUM : **85-92% de précision**
-- Requêtes HARD : **70-80% de précision**
+##### 3. Model Evaluation
 
-##### 4. Scripts d'Inférence
+**Results**
+- MEDIUM Queries: **85-92% precision**
+- HARD Queries: **70-80% precision**
+
+##### 4. Inference Scripts
 
 ```python
 instruction = "Scan all ports on 192.168.1.0/24"
 generated_command = model.generate(instruction)
-print(f"Commande générée : {generated_command}")
-```
+print(f"Generated Command: {generated_command}")
 
 ---
 
 ### Personne 3 : Rami Hala
 
-**Rôle** : Classification de Complexité Nmap
+                               Person 3 Module — Nmap Complexity Classification
 
-#### 📌 Contexte du Projet
+📌 Project Context
 
-Ce module représente le travail de la Personne 3 dans le projet collaboratif NMAP-AI. Il agit comme le **noyau décisionnel** du système, responsable de la compréhension des requêtes Nmap en langage naturel et de l'estimation de leur niveau de complexité pour permettre un routage intelligent vers le moteur d'IA approprié.
+This module represents the work of Person 3 in the collaborative NMAP-AI project.
+It acts as the decision core of the system, responsible for understanding Nmap natural language queries and estimating their complexity level in order to enable intelligent routing to the appropriate AI engine.
 
-#### 🎯 Objectif du Module
+🎯 Module Objective
 
-Analyser une requête Nmap exprimée en langage naturel et :
-- Analyser la requête avec des techniques NLP
-- Extraire des features techniques et sémantiques
-- Prédire un niveau de complexité
-- Fournir une décision claire et explicable
+⦁ Given a user Nmap request expressed in natural language, the module must:
+⦁ Analyze the query using NLP techniques
+⦁ Extract technical and semantic features
+⦁ Predict a complexity level
+⦁ Provide a clear, explainable decision
 
-#### 🎚️ Niveaux de Complexité
+🎚️ Complexity Levels
 
-| Niveau | Signification | Routage |
-|--------|--------------|---------|
-| 🟢 EASY | Scan simple, faible risque | RAG (Personne 1) |
-| 🟡 MEDIUM | Scan technique standard | Phi-4 (Personne 2) |
-| 🔴 HARD | Scan furtif / évasion | Diffusion (Personne 2) |
+| Level     | Meaning                 | Routing              |
+| --------- | ----------------------- | -------------------- |
+| 🟢 EASY   | Simple, low-risk scan   | RAG (Person 1)       |
+| 🟡 MEDIUM | Standard technical scan | Phi-4 (Person 2)     |
+| 🔴 HARD   | Stealth / evasion scan  | Diffusion (Person 2) |
 
-#### 🧠 Approche Globale
+🧠 Global Approach
 
-Architecture hybride combinant :
-- 🧩 NLP avancé (spaCy)
-- 🌲 Machine Learning (Random Forest)
-- 🧠 Règles métier expertes
-- 🕸️ Enrichissement Knowledge Graph (Neo4j – Personne 1)
+The module is based on a hybrid architecture combining:
 
-**Garantit**
-- Généralisation robuste (ML)
-- Gestion précise des cas limites critiques (règles)
-- Compréhension sémantique des concepts Nmap (KG)
+⦁ 🧩 Advanced NLP (spaCy)
+⦁ 🌲 Machine Learning (Random Forest)
+⦁ 🧠 Expert business rules
+⦁ 🕸️ Knowledge Graph enrichment (Neo4j – Person 1)
 
-#### 🏗️ Architecture du Module
+This design ensures:
 
-```
+⦁ Robust generalization (ML)
+⦁ Precise handling of critical edge cases (rules)
+⦁ Semantic understanding of Nmap concepts (KG)
+
+🏗️ Module Architecture
+
 src/
-├── extract_features.py      # Extraction de features NLP
-├── enrich_with_kg.py        # Enrichissement Knowledge Graph Neo4j
-├── train_classifier.py      # Entraînement du modèle ML
-├── classifier.py            # Prédiction + règles métier
-├── router.py                # Routage intelligent final
+├── extract_features.py # NLP feature extraction
+├── enrich_with_kg.py # Neo4j knowledge graph enrichment
+├── train_classifier.py # ML model training
+├── classifier.py # Prediction + business rules
+├── router.py # Final intelligent routing
 models/
-├── complexity_classifier.pkl # Modèle ML entraîné
+├── complexity_classifier.pkl # Trained ML model
 data/
-├── dataset_fusionne.csv     # Dataset d'entraînement final
+├── dataset_fusionne.csv # Final training dataset
 screenshots/
-```
 
-#### ✅ Fonctionnalités Implémentées
+✅ Implemented Features
 
-**1️⃣ Extraction de Features NLP Avancées**
+1️⃣ Advanced NLP Feature Extraction
 
-Le fichier `extract_features.py` convertit une requête en langage naturel en vecteur numérique riche (>25 features) :
-- Statistiques linguistiques (tokens, POS, entités nommées)
-- Détection d'adresses IP, plages réseau et ports
-- Détection de mots-clés par niveau de complexité
-- Options Nmap (UDP, détection OS, scripts, timing)
-- Détection de port unique
-- Score de complexité pondéré
+The file extract_features.py converts a natural language query into a rich numerical vector (>25 features), including:
+⦁ Linguistic statistics (tokens, POS, named entities)
+⦁ IP address, network range and port detection
+⦁ Keyword detection per complexity level
+⦁ Nmap options (UDP, OS detection, scripts, timing)
+⦁ Single-port detection
+⦁ Weighted complexity score
 
-**2️⃣ Enrichissement Knowledge Graph (Neo4j – Personne 1)**
+2️⃣ Knowledge Graph Enrichment (Neo4j – Person 1)
 
-Le module `enrich_with_kg.py` enrichit les features en interrogeant le Knowledge Graph.
+The module enrich_with_kg.py enriches features by querying the Knowledge Graph.
 
-**Labels Neo4j utilisés**
-- Option
-- ScanType
-- Port
-- Script
+Neo4j labels used
 
-**Features ajoutées**
-- Nombre d'options reconnues
-- Nombre de relations associées
-- Fréquence d'utilisation moyenne
-- Indicateurs de risque des scripts
+⦁ Option
+⦁ ScanType
+⦁ Port
+⦁ Script
 
-🔒 **Tolérance aux pannes** : si Neo4j indisponible → valeurs par défaut appliquées.
+Added features
 
-**3️⃣ Classification Machine Learning (Random Forest)**
+⦁ Number of recognized options
+⦁ Number of associated relationships
+⦁ Average usage frequency
+⦁ Script risk indicators
 
-- **Algorithme** : RandomForestClassifier
-- **Entrée** : vecteur de features numériques (NLP + KG)
-- **Classes** : EASY / MEDIUM / HARD
-- **Dataset** : datasets multi-sources fusionnés (CSV + JSON)
+🔒 Fault tolerance: if Neo4j is unavailable → default values are applied.
 
-Le modèle entraîné est sauvegardé : `models/complexity_classifier.pkl`
+3️⃣ Machine Learning Classification (Random Forest)
+
+⦁ Algorithm: RandomForestClassifier
+⦁ Input: numerical feature vector (NLP + KG)
+⦁ Classes: EASY / MEDIUM / HARD
+⦁ Dataset: merged multi-source datasets (CSV + JSON)
+
+The trained model is saved as:
+
+models/complexity_classifier.pkl
 
 ![Training Accuracy](screenshots/training_accuracy.png)
 
-**4️⃣ Règles Métier Post-Prédiction**
+4️⃣ Post-Prediction Business Rules
 
-Règles expertes appliquées après prédiction ML :
-- Scan de port unique → EASY
-- Ports standards sans options avancées → EASY
-- Détection OS sur un réseau → au moins MEDIUM
-- Techniques furtives/évasion (fragmentation, decoy, spoofing) → HARD
+To handle linguistic ambiguities and edge cases, expert rules are applied after ML prediction:
 
-**5️⃣ Classificateur Final (Mode Interactif)**
+⦁ Single port scan → EASY
+⦁ Standard ports without advanced options → EASY
+⦁ OS detection on a network → at least MEDIUM
+⦁ Stealth / evasion techniques (fragmentation, decoy, spoofing) → HARD
 
-```bash
-python src/classifier.py
-```
+5️⃣ Final Classifier (Interactive Mode)
 
-**Exemple**
-```
+Run:
+
+⦁ python src/classifier.py
+
+Example:
+
 Enter Nmap query > Stealth scan with fragmentation and decoy
 → Detected complexity: HARD
-```
 
 ![Classifier Test](screenshots/classifier_test.png)
 
-**6️⃣ Routeur Intelligent**
+6️⃣ Intelligent Router
 
-Le module `router.py` fournit :
-- Prédiction de complexité
-- Score de confiance
-- Explication lisible par l'humain
-- Recommandation de routage claire
+The router.py module provides:
+
+⦁ Complexity prediction
+⦁ Confidence score
+⦁ Human-readable explanation
+⦁ Clear routing recommendation
 
 ![Router Output](screenshots/router_output.png)
 
-#### 🌐 REST API – FastAPI (Production Ready)
+🌐 REST API — FastAPI (Production Ready)
 
-Le module expose une API REST utilisant FastAPI.
+The module exposes a REST API using FastAPI, allowing external systems (frontend, orchestrator, or other agents) to query the Nmap complexity classifier in real time.
 
-**📄 api.py**
+📄 api.py
 
-L'API encapsule la logique de routage et fournit :
-- Validation des entrées
-- Gestion des erreurs
-- Scores de confiance
-- Prédictions explicables
-- Support CORS
+The API wraps the routing logic and provides:
 
-#### 🚀 Endpoints Disponibles
+⦁ Input validation
+⦁ Error handling
+⦁ Confidence scores
+⦁ Explainable predictions
+⦁ CORS support (for frontend / Postman testing)
 
-**🔹 Health Check**
-```
+🚀 Available Endpoints
+
+🔹 Health Check
 GET /
-```
 
-**Response**
-```json
+Response
+
 {
-  "message": "NMAP-AI Router prêt ! POST /predict avec {'query': 'votre phrase'}"
+"message": "NMAP-AI Router prêt ! POST /predict avec {'query': 'votre phrase'}"
 }
-```
 
-**🔹 Predict Nmap Complexity**
-```
+🔹 Predict Nmap Complexity
 POST /predict
-```
 
-**Request Body**
-```json
+Request Body
+
 {
-  "query": "Scan SYN furtif avec fragmentation sur 192.168.1.0/24"
+"query": "Scan SYN furtif avec fragmentation sur 192.168.1.0/24"
 }
-```
 
-**Response**
-```json
+Response
+
 {
-  "predicted_complexity": "HARD",
-  "confidence": 0.973,
-  "all_probabilities": {
-    "EASY": 0.013,
-    "MEDIUM": 0.013,
-    "HARD": 0.973
-  },
-  "explanation": "• Fragmentation de paquets détectée (-f)\n→ **Classe prédite : HARD**"
+"predicted_complexity": "HARD",
+"confidence": 0.973,
+"all_probabilities": {
+"EASY": 0.013,
+"MEDIUM": 0.013,
+"HARD": 0.973
+},
+"explanation": "• Fragmentation de paquets détectée (-f)\n→ **Classe prédite : HARD**"
 }
-```
 
-**🛡 Gestion d'Erreurs**
-- Requête vide → 400 Bad Request
-- Requête non-Nmap → 400 Bad Request
-- Erreur interne → 500 Internal Server Error (avec traceback serveur)
+🛡 Error Handling
 
-**▶️ Lancer l'API**
-```bash
-python src/api.py
-```
+⦁ Empty query → 400 Bad Request
+⦁ Non-Nmap request → 400 Bad Request
+⦁ Internal error → 500 Internal Server Error (with server traceback)
 
-**Serveur** : http://localhost:8002  
-**Swagger UI** : http://localhost:8002/docs
+▶️ Run the API
+
+⦁ python src/api.py
+
+Server runs on:
+
+http://localhost:8002
+
+Interactive Swagger UI:
+
+http://localhost:8002/docs
 
 ![FastAPI Swagger](screenshots/api_swagger.png)
 ![API Prediction](screenshots/api_predict.png)
 
-#### 📊 Résultats et Validation
+📊 Results and Validation
 
-- ✅ Réduction significative des fausses classifications HARD
-- ✅ Gestion appropriée des cas limites
-- ✅ Décisions entièrement explicables
-- ✅ Système prêt pour l'intégration globale
+Significant reduction of false HARD classifications
 
-#### 🤝 Intégration avec les Autres Membres
+Proper handling of edge cases
 
-| Personne | Interaction |
-|----------|------------|
-| Personne 1 | Knowledge Graph (Neo4j) |
-| Personne 2 | Routage vers Phi-4 / Diffusion |
-| Personne 4 | Intégration niveau système |
+Fully explainable decisions
 
-#### 🏁 Statut du Module
+System ready for global integration
 
-- ✅ Développement : TERMINÉ
-- ✅ Tests : VALIDÉ
-- ✅ Intégration : PRÊT
+🤝 Integration with Other Team Members
 
----
+| Person   | Interaction                  |
+| -------- | ---------------------------- |
+| Person 1 | Knowledge Graph (Neo4j)      |
+| Person 2 | Routing to Phi-4 / Diffusion |
+| Person 4 | System-level integration     |
+
+🏁 Module Status
+
+✅ Development: COMPLETED
+✅ Testing: VALIDATED
+✅ Integration: READY
+
 
 ### Personne 4 : Habib Samia
 
-**Rôle** : Amélioration RAG & Self-Correction
+# 🧠 Person 4 Module — RAG Enhancement & Self-Correction  
+**NMAP-AI Project**
 
-#### 🎯 Objectif du Module
+## 🎯 Module Objective
 
-Améliorer la **qualité**, la **fiabilité** et la **robustesse** des commandes Nmap générées automatiquement.
+This module corresponds to the work of **Person 4** in the **NMAP-AI** project. Its mission is to improve the **quality**, **reliability**, and **robustness** of automatically generated Nmap commands.
 
-#### Structure en Deux Parties
+The work is structured into two main parts:
 
-**🔹 Partie A — RAG Amélioré (EASY)**
+### 🔹 Part A — Enhanced RAG (EASY)
 
-Amélioration de l'agent RAG initial avec :
-- Analyse avancée du langage naturel (spaCy)
-- Détection d'intention plus fiable
-- Accélération via cache Neo4j
-- Génération de commandes plus précises
+Improvement of the initial RAG agent (provided by Person 1) for simple queries, including:
 
-**🔹 Partie B — Self-Correction Automatique**
+- Advanced natural language processing using **spaCy**
+- More reliable intent detection
+- Faster queries through a **Neo4j cache**
+- More accurate and consistent Nmap command generation
 
-Mécanisme intelligent capable de :
-- Recevoir n'importe quelle commande Nmap générée
-- Détecter les erreurs via le Knowledge Graph Neo4j
-- Corriger automatiquement les options invalides
-- Limiter la correction à **3 itérations maximum**
-- Fournir une analyse claire des corrections
+### 🔹 Part B — Automatic Self-Correction
 
-📌 **Connexion complète au Knowledge Graph réel** (120+ nœuds et relations)
+Implementation of an intelligent mechanism capable of:
 
-#### 🏗️ Structure du Projet
+- Receiving **any generated Nmap command** (RAG, Phi-4, or Diffusion)
+- Detecting errors using the **Neo4j Knowledge Graph**
+- Automatically correcting invalid or inconsistent options
+- Limiting corrections to **a maximum of 3 iterations**
+- Providing a clear analysis of the applied corrections
+
+📌 The module is **fully connected to the project’s real Knowledge Graph**  
+(more than 120 nodes and enriched relationships).
+
+---
+
+## 🏗️ Project Structure
 
 ```
 Personne4/
@@ -592,89 +607,100 @@ Personne4/
 └── README.md
 ```
 
-#### ⚙️ Prérequis
+---
+
+## ⚙️ Requirements
 
 - Python 3.10+
-- Neo4j sur `bolt://localhost:7687`
+- Neo4j running on `bolt://localhost:7687`
 
-#### 📦 Installation
+---
+
+## 📦 Installation
 
 ```bash
 pip install neo4j spacy transformers torch
 python -m spacy download fr_core_news_sm
 ```
 
-#### 🚀 Utilisation
+---
+
+## 🚀 Usage
 
 ```bash
 python main_test.py
 ```
 
-![Architecture Module](image/image1.png)
-![Architecture Module](image/image2.png)
+![Module Architecture](pictures/4/image1.png)  
+![Module Architecture](pictures/4/image2.png)
 
-#### 🏁 Conclusion
+---
 
-Ce module permet de fiabiliser et d'améliorer les commandes Nmap générées automatiquement.
+## 🏁 Conclusion
+
+This module improves the reliability and overall quality of automatically generated Nmap commands.  
+
 
 ---
 
 ### Personne 5 : El Guallaf Hafssa
 
-**Rôle** : Infrastructure, Validation System & Frontend
+**Role**: Infrastructure, Validation System & Frontend
 
-Responsable de la couche de validation complète, de la fiabilité de l'infrastructure et de l'interface utilisateur frontend du projet NMAP-AI.
+Responsible for the complete validation layer, the reliability of the infrastructure, and the frontend user interface of the NMAP-AI project.
 
-#### 📋 Vue d'Ensemble des Composants
+#### 📋 Overview of Components
 
-**✅ Ce qui a été construit :**
+**✅ What has been built:**
 
 **1. Syntax Checker**
-- Valide la syntaxe des commandes Nmap, flags, ports et cibles
-- Détecte les erreurs et fournit des avertissements
+- Validates the syntax of Nmap commands, flags, ports, and targets
+- Detects errors and provides warnings
 
 **2. Conflict Detector**
-- Interroge le Knowledge Graph Neo4j (fourni par Personne 1)
-- Identifie les options conflictuelles
-- Suggère des alternatives compatibles
+- Queries the Neo4j Knowledge Graph (provided by Person 1)
+- Identifies conflicting options
+- Suggests compatible alternatives
 
 **3. Heuristic Checker**
-- Applique les meilleures pratiques pour performance, discrétion et sécurité
+- Applies best practices for performance, stealth, and security
 
 **4. Scoring System**
-- Combine les résultats de toutes les vérifications
-- Scoring pondéré pour assigner un score final et une note (A–F)
+- Combines the results of all checks
+- Weighted scoring to assign a final score and grade (A–F)
 
 **5. Final Decision Agent**
-- Compare les commandes générées par différents agents
-- Sélectionne la meilleure avec score de confiance et explication
+- Compares commands generated by different agents
+- Selects the best one with confidence score and explanation
 
 **6. Frontend Interface (Flask)**
-- Tableau de bord web pour saisie de requêtes en langage naturel
-- Affichage en temps réel de l'exécution complète du pipeline
-- Résultats de validation détaillés, scores, notes et explications
-- Comparaison côte à côte des commandes générées
-- Mise en évidence et visualisation de la commande finale sélectionnée
-- Interface responsive et conviviale
+- Web dashboard for entering natural language queries
+- Real-time display of the full pipeline execution
+- Detailed validation results, scores, grades, and explanations
+- Side-by-side comparison of generated commands
+- Highlighting and visualization of the final selected command
+- Responsive and user-friendly interface
 
-#### 🚀 Livrables Clés
 
-- ✅ Pipeline de validation multi-étapes complet
-- ✅ Intégration directe au Knowledge Graph Neo4j
-- ✅ Système de scoring et notation pondéré
-- ✅ Moteur de décision finale pour sélection multi-agents
-- ✅ Interface web Flask complète pour utilisateurs finaux
-- ✅ Suite de tests complète et couche d'intégration robuste
+#### 🚀 Key Deliverables
+
+- ✅ Complete multi-step validation pipeline
+- ✅ Direct integration with the Neo4j Knowledge Graph
+- ✅ Weighted scoring and grading system
+- ✅ Final decision engine for multi-agent selection
+- ✅ Full Flask web interface for end users
+- ✅ Complete test suite and robust integration layer
 
 #### 📊 Highlights Validation & Frontend
 
-- **Code de production total** : ~1,900+ lignes (validation + frontend Flask)
-- **Priorité de validation** : éviter les conflits (40% de poids)
-- **Rapports détaillés** avec erreurs, avertissements et suggestions
-- **Application web Flask interactive** avec feedback temps réel
-- **Connexion transparente** au serveur MCP et autres agents
+- **Total production code**: ~1,900+ lines (validation + Flask frontend)
+- **Validation priority**: Avoid conflicts (40% weight)
+- **Detailed reports** with errors, warnings, and suggestions
+- **Interactive Flask web application** with real-time feedback
+- **Seamless integration** with MCP server and other agents
 
-#### 🗂️ Structure du Projet
+
+#### 🗂️ Project Structure  
 
 ```
 nmap_ai_project/
@@ -706,7 +732,7 @@ nmap_ai_project/
 - ✅ Tests End-to-End
 - ✅ Documentation Complète
 
-![Validation System](image.png)
+![Validation System](pictures/5/image.png)
 
 🎉 **Système de validation et frontend Flask entièrement terminés, testés et prêts pour déploiement en production et intégration d'équipe !**
 
