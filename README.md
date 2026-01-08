@@ -163,7 +163,7 @@ Les requêtes utilisateur sont classées automatiquement en trois niveaux de com
 - **Labels principaux** : Option, ScanType, Port, Script, Service, Protocol
 
 **Visualisations**
-![Total Nodes](pictures/neo4j_total_nodes.png)
+- ![Total Nodes](pictures/neo4j_total_nodes.png)
 - ![Labels Distribution](C:\Users\Admin\OneDrive\Desktop\Nmap_Agents\neo4j_labels.png)
 - ![Relationships](C:\Users\Admin\OneDrive\Desktop\Nmap_Agents\neo4j_relationships.png)
 - ![Graph View](C:\Users\Admin\OneDrive\Desktop\Nmap_Agents\neo4j_graph_view.png)
